@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CF7 Spreadsheets\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-04 13:43+0000\n"
+"PO-Revision-Date: 2017-01-04 13:44+0000\n"
+"Last-Translator: admin <qwe@qwe.qwe>\n"
+"Language-Team: Russian\n"
+"Language: ru-RU\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: ajax.php:16
+msgid "Error file write."
+msgstr "Ошибка записи файла."
+
+#: ajax.php:21
+msgid "Changes saved successfully."
+msgstr "Изменения успешно сохранены."
+
+#: ajax.php:23
+msgid "Error."
+msgstr "Ошибка."
+
+#: CF7-spreadsheets.php:154
+msgid "Google Spreadsheets"
+msgstr "Google таблицы"
+
+#: CF7-spreadsheets.php:158
+msgid "Google spreadsheet options"
+msgstr "Опции"
+
+#: CF7-spreadsheets.php:160
+msgid "Spreadsheet URL"
+msgstr "URL таблицы"
+
+#: CF7-spreadsheets.php:164
+msgid "Spreadsheet ID"
+msgstr "ID таблицы"
+
+#: CF7-spreadsheets.php:168
+msgid "Send on email too (continue default Contact form action)?"
+msgstr "Отправлять почту также на email (стандартное действие Contact form 7)?"
+
+#: CF7-spreadsheets.php:173
+msgid "Send the datetime?"
+msgstr "Отправлять дату/время?"
+
+#: CF7-spreadsheets.php:178
+msgid "Upload JSON from API console"
+msgstr "Загрузить JSON файл из API console"
+
+#: CF7-spreadsheets.php:182
+msgid "Current file: "
+msgstr "Текущий файл:"
+
+#: CF7-spreadsheets.php:186
+msgid "Save"
+msgstr "Сохранить"
+
+#. Name of the plugin
+msgid "CF7 Spreadsheets"
+msgstr "CF7 Spreadsheets"
+
+#. Description of the plugin
+msgid "Send Contact form 7 mail to Google spreadsheets"
+msgstr "Отправка \"Contact form 7\" форм в гугл таблицы."
+
+#. URI of the plugin
+msgid "https://github.com/moshenskyDV/CF7-spreadsheets"
+msgstr "https://github.com/moshenskyDV/CF7-spreadsheets"
+
+#. Author of the plugin
+msgid "Moshenskyi Danylo"
+msgstr "Мошенский Даниил"
+
+#. Author URI of the plugin
+msgid "http://itgo-solutions.com"
+msgstr "http://itgo-solutions.com"

@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: CF7 Spreadsheets
-Plugin URI:
-Description: Send mail to Google spreadsheets
-Version: 1.0.0
+Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
+Description: Send Contact form 7 mail to Google spreadsheets
+Version: 1.0.1
 Author: Moshenskyi Danylo
 Author URI: http://itgo-solutions.com
 */
@@ -151,39 +151,39 @@ function CF7spreadsheets_print()
 {
     /*echo options in admin menu*/ ?>
     <div class="wrap">
-        <h1><?php echo 'Google Spreadsheets' ?></h1>
+        <h1><?php echo __('Google Spreadsheets', 'CF7-spreadsheets'); ?></h1>
         <div class="col-container">
             <div class="form-wrap">
                 <form enctype="multipart/form-data" action="#" id="CF7spreadsheets_search_form" method="post">
-                    <h3><?php echo 'Google spreadsheet options' ?></h3>
+                    <h3><?php echo __('Google spreadsheet options', 'CF7-spreadsheets'); ?></h3>
                     <div class="form-field form-required">
-                        <label for="CF7spreadsheets_option_url"><?php echo 'Spreadsheet URL' ?></label>
+                        <label for="CF7spreadsheets_option_url"><?php echo __('Spreadsheet URL', 'CF7-spreadsheets'); ?></label>
                         <input type="text" name="CF7spreadsheets_option_url" id="CF7spreadsheets_option_url" value="<?php echo get_option('CF7spreadsheets_option_url'); ?>">
                     </div>
                     <div class="form-field form-required">
-                        <label for="CF7spreadsheets_option_id"><?php echo 'Spreadsheet ID' ?></label>
+                        <label for="CF7spreadsheets_option_id"><?php echo __('Spreadsheet ID', 'CF7-spreadsheets'); ?></label>
                         <input type="text" name="CF7spreadsheets_option_id" id="CF7spreadsheets_option_id" value="<?php echo get_option('CF7spreadsheets_option_id'); ?>">
                     </div>
                     <div class="form-field form-required">
-                        <label for="CF7spreadsheets_option_mail"><?php echo 'Send on email too (continue default Contact form action)?' ?></label>
+                        <label for="CF7spreadsheets_option_mail"><?php echo __('Send on email too (continue default Contact form action)?', 'CF7-spreadsheets'); ?></label>
                         <input type="checkbox" name="CF7spreadsheets_option_mail" id="CF7spreadsheets_option_mail"
                             <?php if (get_option('CF7spreadsheets_option_mail') == 'true'){ echo 'checked="checked"';} ?>>
                     </div>
                     <div class="form-field form-required">
-                        <label for="CF7spreadsheets_option_time"><?php echo 'Send the datetime?' ?></label>
+                        <label for="CF7spreadsheets_option_time"><?php echo __('Send the datetime?', 'CF7-spreadsheets'); ?></label>
                         <input type="checkbox" name="CF7spreadsheets_option_time" id="CF7spreadsheets_option_time"
                             <?php if (get_option('CF7spreadsheets_option_time') == 'true'){ echo 'checked="checked"';} ?>>
                     </div>
                     <div class="form-field form-required">
-                        <label for="CF7spreadsheets_option_file"><?php echo 'Upload JSON from API console' ?></label>
+                        <label for="CF7spreadsheets_option_file"><?php echo __('Upload JSON from API console', 'CF7-spreadsheets'); ?></label>
                         <input type="file" name="CF7spreadsheets_option_file" id="CF7spreadsheets_option_file" value="<?php echo get_option('CF7spreadsheets_option_file'); ?>">
                         <span class="CF7spreadsheets_status"></span>
                         <?php if(get_option('CF7spreadsheets_option_filename')){ ?>
-                            <p>Current file: <?php echo get_option('CF7spreadsheets_option_filename') ?></p>
+                            <p><?php echo __('Current file: ', 'CF7-spreadsheets'), get_option('CF7spreadsheets_option_filename') ?></p>
                         <?php } ?>
                     </div>
                     <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-                    <input type="button" id="CF7spreadsheets_option_submit" class="button button-primary" value="<?php echo 'Save' ?>">
+                    <input type="button" id="CF7spreadsheets_option_submit" class="button button-primary" value="<?php echo __('Save', 'CF7-spreadsheets'); ?>">
                     <p class="CF7spreadsheets_response"></p>
                 </form>
                 <div class="ipcontrol_response"></div>

@@ -13,14 +13,14 @@ function CF7spreadsheets_update()
             update_option('CF7spreadsheets_option_filename', $_POST['CF7spreadsheets_option_file_name']);
 
             if (!file_put_contents(plugin_dir_path(__FILE__) . $_POST['CF7spreadsheets_option_file_name'], stripcslashes($_POST['CF7spreadsheets_option_file']))) {
-                echo "<div class='CF7spreadsheets_error_ajax'>Error file write.</div>";
+                echo "<div class='CF7spreadsheets_error_ajax'>" . __('Error file write.', 'CF7-spreadsheets') . "</div>";
                 wp_die();
             }
         }
 
-        echo "<div class='CF7spreadsheets_success_ajax'>Changes saved successfully.</div>";
+        echo "<div class='CF7spreadsheets_success_ajax'>" . __('Changes saved successfully.', 'CF7-spreadsheets') . "</div>";
     } else {
-        echo "<div class='CF7spreadsheets_error_ajax'>Error.</div>";
+        echo "<div class='CF7spreadsheets_error_ajax'>" . __('Error.', 'CF7-spreadsheets') . "</div>";
     }
     wp_die();
 }

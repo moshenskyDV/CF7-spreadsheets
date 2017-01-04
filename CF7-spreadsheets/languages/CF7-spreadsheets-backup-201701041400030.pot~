@@ -1,0 +1,100 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-04 13:59+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: CF7-spreadsheets.php:154
+msgctxt "Google Spreadsheets"
+msgid "Google Spreadsheets"
+msgstr ""
+
+#: CF7-spreadsheets.php:158
+msgctxt "Google spreadsheet options"
+msgid "Google spreadsheet options"
+msgstr ""
+
+#: CF7-spreadsheets.php:160
+msgctxt "Spreadsheet URL"
+msgid "Spreadsheet URL"
+msgstr ""
+
+#: CF7-spreadsheets.php:164
+msgctxt "Spreadsheet ID"
+msgid "Spreadsheet ID"
+msgstr ""
+
+#: CF7-spreadsheets.php:168
+msgctxt "Send on email too (continue default Contact form action)?"
+msgid "Send on email too (continue default Contact form action)?"
+msgstr ""
+
+#: CF7-spreadsheets.php:173
+msgctxt "Send the datetime?"
+msgid "Send the datetime?"
+msgstr ""
+
+#: CF7-spreadsheets.php:178
+msgctxt "Upload JSON from API console"
+msgid "Upload JSON from API console"
+msgstr ""
+
+#: CF7-spreadsheets.php:182
+msgctxt "Current file: "
+msgid "Current file: "
+msgstr ""
+
+#: CF7-spreadsheets.php:186
+msgctxt "Save"
+msgid "Save"
+msgstr ""
+
+#: ajax.php:16
+msgctxt "Error file write."
+msgid "Error file write."
+msgstr ""
+
+#: ajax.php:21
+msgctxt "Changes saved successfully."
+msgid "Changes saved successfully."
+msgstr ""
+
+#: ajax.php:23
+msgctxt "Error."
+msgid "Error."
+msgstr ""
+
+#. Name of the plugin
+msgctxt "CF7 Spreadsheets"
+msgid "CF7 Spreadsheets"
+msgstr ""
+
+#. Description of the plugin
+msgctxt "Send Contact form 7 mail to Google spreadsheets"
+msgid "Send Contact form 7 mail to Google spreadsheets"
+msgstr ""
+
+#. URI of the plugin
+msgctxt "https://github.com/moshenskyDV/CF7-spreadsheets"
+msgid "https://github.com/moshenskyDV/CF7-spreadsheets"
+msgstr ""
+
+#. Author of the plugin
+msgctxt "Moshenskyi Danylo"
+msgid "Moshenskyi Danylo"
+msgstr ""
+
+#. Author URI of the plugin
+msgctxt "http://itgo-solutions.com"
+msgid "http://itgo-solutions.com"
+msgstr ""

@@ -13,3 +13,11 @@ function CF7spreadsheets_scripts()
 }
 
 add_action('admin_enqueue_scripts', 'CF7spreadsheets_scripts');
+
+/*translate*/
+function CF7spreadsheets_init()
+{
+    load_plugin_textdomain('CF7-spreadsheets', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+}
+
+add_action('plugins_loaded', 'CF7spreadsheets_init');
