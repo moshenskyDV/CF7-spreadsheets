@@ -3,9 +3,12 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 1.0.1
+Version: 1.0.2
 Author: Moshenskyi Danylo
 Author URI: http://itgo-solutions.com
+Text Domain: CF7-spreadsheets
+Domain Path: /languages/
+License: MIT
 */
 
 /*  Copyright 2016  Moshenskyi Danylo  (email: moshensky.c1371@yandex.ru)
