@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 1.0.2
+Version: 1.0.3
 Author: Moshenskyi Danylo
 Author URI: http://itgo-solutions.com
 Text Domain: CF7-spreadsheets
@@ -41,13 +41,13 @@ use Google\Spreadsheet\ServiceRequestFactory;
 function CF7spreadsheets_main($cf7)
 {
 
-    putenv('GOOGLE_APPLICATION_CREDENTIALS=./' . get_option('CF7spreadsheets_option_filename')); //<----path to JSON
+    putenv('GOOGLE_APPLICATION_CREDENTIALS=./' . esc_html(get_option('CF7spreadsheets_option_filename'))); //<----path to JSON
 
     $client = new Google_Client();
 //$client->useApplicationDefaultCredentials();
 
     try {
-        $client->setAuthConfig(plugin_dir_path(__FILE__) . '/' . get_option('CF7spreadsheets_option_filename')); //<----path to JSON
+        $client->setAuthConfig(plugin_dir_path(__FILE__) . '/' . esc_html(get_option('CF7spreadsheets_option_filename'))); //<----path to JSON
     } catch (Exception $e) {
         // Something went wrong
         echo $e->getMessage();
@@ -69,13 +69,13 @@ function CF7spreadsheets_main($cf7)
     if (!empty($params_values_arr)) {
 
 // Set the sheet ID
-        $fileId = get_option('CF7spreadsheets_option_url'); // Copy & paste from a spreadsheet URL   <-----URL
+        $fileId = esc_html(get_option('CF7spreadsheets_option_url')); // Copy & paste from a spreadsheet URL   <-----URL
 // Build the CellData array
 
         $ary_values = [];
 
         /*datetime in table*/
-        if(get_option('CF7spreadsheets_option_time') == 'true'){
+        if(esc_html(get_option('CF7spreadsheets_option_time')) == 'true'){
             $_date = date('Y-m-d H:i:s', time());
             array_push($ary_values, $_date);
         }
@@ -97,7 +97,7 @@ function CF7spreadsheets_main($cf7)
         $rowData->setValues($values);
 // Prepare the request
         $append_request = new Google_Service_Sheets_AppendCellsRequest();
-        $append_request->setSheetId(get_option('CF7spreadsheets_option_id')); //<-----SHEET ID
+        $append_request->setSheetId(esc_html(get_option('CF7spreadsheets_option_id'))); //<-----SHEET ID
         $append_request->setRows($rowData);
         $append_request->setFields('userEnteredValue');
 // Set the request
@@ -116,16 +116,15 @@ function CF7spreadsheets_main($cf7)
             $response = $service->spreadsheets->batchUpdate($fileId, $batchUpdateRequest);
             if ($response->valid()) {
                 // Success, the row has been added
-                $success = true;
             }
         } catch (Exception $e) {
             // Something went wrong
-            echo $e->getMessage();
+            echo 'Error.';
         }
     }
 
     /*after google send option skip email needed*/
-    if (get_option('CF7spreadsheets_option_mail') == 'true') {
+    if (esc_html(get_option('CF7spreadsheets_option_mail')) == 'true') {
         // If you want to skip mailing the data, you can do it...
         $cf7->skip_mail = true;
     }
@@ -161,11 +160,11 @@ function CF7spreadsheets_print()
                     <h3><?php echo __('Google spreadsheet options', 'CF7-spreadsheets'); ?></h3>
                     <div class="form-field form-required">
                         <label for="CF7spreadsheets_option_url"><?php echo __('Spreadsheet URL', 'CF7-spreadsheets'); ?></label>
-                        <input type="text" name="CF7spreadsheets_option_url" id="CF7spreadsheets_option_url" value="<?php echo get_option('CF7spreadsheets_option_url'); ?>">
+                        <input type="text" name="CF7spreadsheets_option_url" id="CF7spreadsheets_option_url" value="<?php echo esc_html(get_option('CF7spreadsheets_option_url')); ?>">
                     </div>
                     <div class="form-field form-required">
                         <label for="CF7spreadsheets_option_id"><?php echo __('Spreadsheet ID', 'CF7-spreadsheets'); ?></label>
-                        <input type="text" name="CF7spreadsheets_option_id" id="CF7spreadsheets_option_id" value="<?php echo get_option('CF7spreadsheets_option_id'); ?>">
+                        <input type="text" name="CF7spreadsheets_option_id" id="CF7spreadsheets_option_id" value="<?php echo esc_html(get_option('CF7spreadsheets_option_id')); ?>">
                     </div>
                     <div class="form-field form-required">
                         <label for="CF7spreadsheets_option_mail"><?php echo __('Send on email too (continue default Contact form action)?', 'CF7-spreadsheets'); ?></label>
@@ -179,10 +178,10 @@ function CF7spreadsheets_print()
                     </div>
                     <div class="form-field form-required">
                         <label for="CF7spreadsheets_option_file"><?php echo __('Upload JSON from API console', 'CF7-spreadsheets'); ?></label>
-                        <input type="file" name="CF7spreadsheets_option_file" id="CF7spreadsheets_option_file" value="<?php echo get_option('CF7spreadsheets_option_file'); ?>">
+                        <input type="file" name="CF7spreadsheets_option_file" id="CF7spreadsheets_option_file" value="<?php echo esc_html(get_option('CF7spreadsheets_option_file')); ?>">
                         <span class="CF7spreadsheets_status"></span>
                         <?php if(get_option('CF7spreadsheets_option_filename')){ ?>
-                            <p><?php echo __('Current file: ', 'CF7-spreadsheets'), get_option('CF7spreadsheets_option_filename') ?></p>
+                            <p><?php echo __('Current file: ', 'CF7-spreadsheets'), esc_html(get_option('CF7spreadsheets_option_filename')); ?></p>
                         <?php } ?>
                     </div>
                     <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />

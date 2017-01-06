@@ -3,7 +3,7 @@ Contributors: Moshenskyi Danylo
 Tags: contact form 7, google, spreadsheets, table, data, merge, save mail
 Requires at least: 4.7
 Tested up to: 4.7
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,10 @@ Open table in browser, this parameters will in address string of your browser.
 
 == Changelog ==
 
+= 1.0.3 =
+
+* Security fixes
+
 = 1.0.2 =
 
 * Added readme.txt and assets
@@ -60,6 +64,10 @@ Open table in browser, this parameters will in address string of your browser.
 * Alpha version
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+
+Security fixes.
 
 = 1.0.2 =
 

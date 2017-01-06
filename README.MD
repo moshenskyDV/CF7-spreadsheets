@@ -23,8 +23,12 @@ Wordpress plugin that merge Contact form 7 functional with google spreadsheets (
 
 ### Changelog
 
-1. v 1.0.0. - beta
+1. v 1.0.0 - beta
     * default functional
-2. v 1.0.1. - release
+2. v 1.0.1 - release
     * Added translate to russian language
     * Added readme
+3. v 1.0.2
+    * Added readme.txt and assets
+4. v 1.0.3
+    * Security fixes
