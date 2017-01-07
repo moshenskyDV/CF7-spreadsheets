@@ -39,8 +39,6 @@ function CF7spreadsheets_update()
     if (!get_option('CF7spreadsheets_option_filename') || !empty($_POST['CF7spreadsheets_option_file_name']) && $_POST['CF7spreadsheets_option_file_name'] != get_option('CF7spreadsheets_option_filename')) {
         if (!empty($_POST['CF7spreadsheets_option_file'])) {
             if (isJson(stripcslashes($_POST['CF7spreadsheets_option_file']))) {
-                echo $_POST['CF7spreadsheets_option_file'];
-                echo stripcslashes($_POST['CF7spreadsheets_option_file']);
                 if (!file_put_contents(plugin_dir_path(__FILE__) . sanitize_file_name($_POST['CF7spreadsheets_option_file_name']), stripcslashes($_POST['CF7spreadsheets_option_file']))) {
                     echo "<div class='CF7spreadsheets_error_ajax'>" . __('Error file write.', 'CF7-spreadsheets') . "</div>";
                     wp_die();
