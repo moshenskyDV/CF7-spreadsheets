@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 1.0.3
+Version: 1.0.4
 Author: Moshenskyi Danylo
 Author URI: http://itgo-solutions.com
 Text Domain: CF7-spreadsheets
@@ -32,19 +32,15 @@ require(ABSPATH . 'wp-admin/includes/upgrade.php');
 require('include.php');
 require('ajax.php');
 
-require 'vendor/autoload.php';
-use Google\Spreadsheet\DefaultServiceRequest;
-use Google\Spreadsheet\ServiceRequestFactory;
-
 
 /*main function*/
 function CF7spreadsheets_main($cf7)
 {
 
+    require 'vendor/autoload.php';
     putenv('GOOGLE_APPLICATION_CREDENTIALS=./' . esc_html(get_option('CF7spreadsheets_option_filename'))); //<----path to JSON
 
     $client = new Google_Client();
-//$client->useApplicationDefaultCredentials();
 
     try {
         $client->setAuthConfig(plugin_dir_path(__FILE__) . '/' . esc_html(get_option('CF7spreadsheets_option_filename'))); //<----path to JSON
@@ -137,14 +133,27 @@ add_action("wpcf7_before_send_mail", "CF7spreadsheets_main");
 
 function CF7spreadsheets_adminmenu()
 {
-    add_submenu_page(
-        'wpcf7',
-        'Google Spreadsheets',
-        'Google Spreadsheets',
-        'activate_plugins',
-        'wpcf7-cf7spreadsheet',
-        'CF7spreadsheets_print'
-    );
+    global $admin_page_hooks;
+
+    if (isset($admin_page_hooks['wpcf7'])){
+        add_submenu_page(
+            'wpcf7',
+            'Google Spreadsheets',
+            'Google Spreadsheets',
+            'activate_plugins',
+            'wpcf7-cf7spreadsheet',
+            'CF7spreadsheets_print'
+        );
+    }else{
+        /*WPCF not installed, notice*/
+        function CF7spreadsheets_notice(){ ?>
+            <div class="error notice is-dismissible">
+                <p><?php echo __('"Contact form 7" plugin required.', 'CF7-spreadsheets'); ?></p>
+            </div>
+        <?php }
+
+        add_action('admin_notices', 'CF7spreadsheets_notice' );
+    }
 }
 
 add_action('admin_menu', 'CF7spreadsheets_adminmenu');

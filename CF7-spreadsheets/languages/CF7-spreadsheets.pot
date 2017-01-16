@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 14:00+0000\n"
+"POT-Creation-Date: 2017-01-16 21:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,52 +14,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: CF7-spreadsheets.php:154
+#: CF7-spreadsheets.php:151
+msgid "\"Contact form 7\" plugin required."
+msgstr ""
+
+#: CF7-spreadsheets.php:165
 msgid "Google Spreadsheets"
 msgstr ""
 
-#: CF7-spreadsheets.php:158
+#: CF7-spreadsheets.php:169
 msgid "Google spreadsheet options"
 msgstr ""
 
-#: CF7-spreadsheets.php:160
+#: CF7-spreadsheets.php:171
 msgid "Spreadsheet URL"
 msgstr ""
 
-#: CF7-spreadsheets.php:164
+#: CF7-spreadsheets.php:175
 msgid "Spreadsheet ID"
 msgstr ""
 
-#: CF7-spreadsheets.php:168
+#: CF7-spreadsheets.php:179
 msgid "Send on email too (continue default Contact form action)?"
 msgstr ""
 
-#: CF7-spreadsheets.php:173
+#: CF7-spreadsheets.php:184
 msgid "Send the datetime?"
 msgstr ""
 
-#: CF7-spreadsheets.php:178
+#: CF7-spreadsheets.php:189
 msgid "Upload JSON from API console"
 msgstr ""
 
-#: CF7-spreadsheets.php:182
+#: CF7-spreadsheets.php:193
 msgid "Current file: "
 msgstr ""
 
-#: CF7-spreadsheets.php:186
+#: CF7-spreadsheets.php:197
 msgid "Save"
 msgstr ""
 
-#: ajax.php:16
+#: ajax.php:8
+msgid "Wrong value: Spreadsheet URL. It must be filled."
+msgstr ""
+
+#: ajax.php:14
+msgid "Wrong value: Spreadsheet ID. It must be a number."
+msgstr ""
+
+#: ajax.php:20
+msgid "Wrong value: Send email."
+msgstr ""
+
+#: ajax.php:26
+msgid "Wrong value: Send date/time."
+msgstr ""
+
+#: ajax.php:43
 msgid "Error file write."
 msgstr ""
 
-#: ajax.php:21
-msgid "Changes saved successfully."
+#: ajax.php:51 ajax.php:56
+msgid "Wrong value: JSON file not valid."
 msgstr ""
 
-#: ajax.php:23
-msgid "Error."
+#: ajax.php:61
+msgid "Changes saved successfully."
 msgstr ""
 
 #. Name of the plugin

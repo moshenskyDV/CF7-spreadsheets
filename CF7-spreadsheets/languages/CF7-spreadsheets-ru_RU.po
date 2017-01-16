@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CF7 Spreadsheets\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 13:43+0000\n"
-"PO-Revision-Date: 2017-01-04 13:44+0000\n"
+"POT-Creation-Date: 2017-01-16 21:22+0000\n"
+"PO-Revision-Date: 2017-01-16 21:25+0000\n"
 "Last-Translator: admin <qwe@qwe.qwe>\n"
 "Language-Team: Russian\n"
 "Language: ru-RU\n"
@@ -14,53 +14,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: ajax.php:16
-msgid "Error file write."
-msgstr "Ошибка записи файла."
+#: CF7-spreadsheets.php:151
+msgid "\"Contact form 7\" plugin required."
+msgstr "Требуется плагин \"Contact form 7\"."
 
-#: ajax.php:21
-msgid "Changes saved successfully."
-msgstr "Изменения успешно сохранены."
+#: ajax.php:8
+msgid "Wrong value: Spreadsheet URL. It must be filled."
+msgstr "Ошибка: URL таблицы должен быть заполнен."
 
-#: ajax.php:23
-msgid "Error."
-msgstr "Ошибка."
+#: ajax.php:14
+msgid "Wrong value: Spreadsheet ID. It must be a number."
+msgstr "Ошибка: ID таблицы должно быть числовым значением."
 
-#: CF7-spreadsheets.php:154
+#: ajax.php:20
+msgid "Wrong value: Send email."
+msgstr "Ошибка: Неверный параметр \"Отправлять почту также на email\"."
+
+#: ajax.php:26
+msgid "Wrong value: Send date/time."
+msgstr "Ошибка: Неверный параметр \"Отправлять дату\"."
+
+#: ajax.php:51 ajax.php:56
+msgid "Wrong value: JSON file not valid."
+msgstr "Ошибка: JSON файл не валиден."
+
+#: CF7-spreadsheets.php:165
 msgid "Google Spreadsheets"
 msgstr "Google таблицы"
 
-#: CF7-spreadsheets.php:158
+#: CF7-spreadsheets.php:169
 msgid "Google spreadsheet options"
 msgstr "Опции"
 
-#: CF7-spreadsheets.php:160
+#: CF7-spreadsheets.php:171
 msgid "Spreadsheet URL"
 msgstr "URL таблицы"
 
-#: CF7-spreadsheets.php:164
+#: CF7-spreadsheets.php:175
 msgid "Spreadsheet ID"
 msgstr "ID таблицы"
 
-#: CF7-spreadsheets.php:168
+#: CF7-spreadsheets.php:179
 msgid "Send on email too (continue default Contact form action)?"
 msgstr "Отправлять почту также на email (стандартное действие Contact form 7)?"
 
-#: CF7-spreadsheets.php:173
+#: CF7-spreadsheets.php:184
 msgid "Send the datetime?"
 msgstr "Отправлять дату/время?"
 
-#: CF7-spreadsheets.php:178
+#: CF7-spreadsheets.php:189
 msgid "Upload JSON from API console"
 msgstr "Загрузить JSON файл из API console"
 
-#: CF7-spreadsheets.php:182
+#: CF7-spreadsheets.php:193
 msgid "Current file: "
 msgstr "Текущий файл:"
 
-#: CF7-spreadsheets.php:186
+#: CF7-spreadsheets.php:197
 msgid "Save"
 msgstr "Сохранить"
+
+#: ajax.php:43
+msgid "Error file write."
+msgstr "Ошибка записи файла."
+
+#: ajax.php:61
+msgid "Changes saved successfully."
+msgstr "Изменения успешно сохранены."
 
 #. Name of the plugin
 msgid "CF7 Spreadsheets"

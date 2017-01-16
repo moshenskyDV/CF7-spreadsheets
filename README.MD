@@ -17,7 +17,7 @@ Wordpress plugin that merge Contact form 7 functional with google spreadsheets (
     * Save the json document
 2. Create a table
     * Go to the [Google Spreadsheets](https://docs.google.com/spreadsheets/) and create new table (or open exists table)
-    * Copy table URL and ID. For example: `https://docs.google.com/spreadsheets/d/1yhzO1Q6ikYysfg8LCHqegPM0CI_NtZwZMI7PZTo33z8/edit#gid=0` in this table URL is: `1yhzO1Q6ikYysfg8LCHqegPM0CI_NtZwZMI7PZTo33z8`, and ID is: `0`(parameter `gid`).
+    * Copy table URL and ID. For example: `//docs.google.com/spreadsheets/d/1yhzO1Q6ikYysfg8LCHqegPM/edit#gid=0` in this table URL is: `1yhzO1Q6ikYysfg8LCHqegPM`, and ID is: `0`(parameter `gid`).
 3. Paste the spreadsheet URL and ID in plugin options page, upload JSON file, and choose other options. ![CF7-spreadshhets](http://i.piccy.info/i9/6c4ae328f23084143e0d749af2238245/1483544368/52269/1095319/Screenshot_from_2017_01_04_17_39_07.png)
 4. Create usual form in `Contact form 7` and use it.
 
@@ -32,3 +32,7 @@ Wordpress plugin that merge Contact form 7 functional with google spreadsheets (
     * Added readme.txt and assets
 4. v 1.0.3
     * Security fixes
+5. v 1.0.4
+    * Compatibility with other plugins, that use google account fixed
+    * Notice added
+    * RU Translation updated
