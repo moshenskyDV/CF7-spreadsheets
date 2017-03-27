@@ -3,7 +3,7 @@ Contributors: Moshenskyi Danylo
 Tags: contact form 7, google, spreadsheets, table, data, merge, save mail
 Requires at least: 4.7
 Tested up to: 4.7
-Stable tag: 1.0.4
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,8 @@ Wordpress plugin that merge Contact form 7 functional with google spreadsheets (
 
 How to use:
 
+Video instruction: [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.youtube.com/watch?v=5ICWr5MMo7E)
+
 1. Prepare API
     * Go to the [Console Developers API](https://console.developers.google.com/)
     * Enable Sheets API (in `library` tab)
@@ -24,12 +26,12 @@ How to use:
 2. Create a table
     * Go to the [Google Spreadsheets](https://docs.google.com/spreadsheets/) and create new table (or open exists table)
     * Copy table URL and ID. For example: `//docs.google.com/spreadsheets/d/1yhzO1Q6ikYysfg8LCHqegPM/edit#gid=0` in this table URL is: `1yhzO1Q6ikYysfg8LCHqegPM`, and ID is: `0`(parameter `gid`).
-3. Paste the spreadsheet URL and ID in plugin options page, upload JSON file, and choose other options. ![CF7-spreadshhets](http://i.piccy.info/i9/6c4ae328f23084143e0d749af2238245/1483544368/52269/1095319/Screenshot_from_2017_01_04_17_39_07.png)
+3. Paste the spreadsheet URL and ID in plugin options page, upload JSON file, and choose other options.
 4. Create usual form in `Contact form 7` and use it.
 
 == Installation ==
 
-1. Upload plugin folder `CF7 -sreadsheets` to `wp-content/plugins` directory
+1. Upload plugin folder `CF7-spreadsheets` to `wp-content/plugins` directory
 2. Open wordpress admin tool and activate the plugin at `plugins` menu
 
 == Frequently Asked Questions ==
@@ -44,9 +46,18 @@ Open table in browser, this parameters will in address string of your browser.
 
 == Screenshots ==
 
-1. Option page
+1. Table options page
+2. Output page
 
 == Changelog ==
+
+= 2.0.0 =
+
+* Rewrite in OOP style
+* Added configuring output row
+* Added forms choose to use
+* Fixed bug with checkbox (default action CF7)
+* New user interface
 
 = 1.0.4 =
 
@@ -70,6 +81,10 @@ Open table in browser, this parameters will in address string of your browser.
 * Alpha version
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+
+Major update. New interface, few new important features.
 
 = 1.0.4 =
 

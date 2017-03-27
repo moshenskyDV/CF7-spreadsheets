@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CF7 Spreadsheets\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-16 21:22+0000\n"
-"PO-Revision-Date: 2017-01-16 21:25+0000\n"
+"POT-Creation-Date: 2017-03-27 11:41+0000\n"
+"PO-Revision-Date: 2017-03-27 11:42+0000\n"
 "Last-Translator: admin <qwe@qwe.qwe>\n"
 "Language-Team: Russian\n"
 "Language: ru-RU\n"
@@ -14,73 +14,128 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: CF7-spreadsheets.php:151
+#: CF7-spreadsheets.php:267
 msgid "\"Contact form 7\" plugin required."
 msgstr "Требуется плагин \"Contact form 7\"."
 
-#: ajax.php:8
-msgid "Wrong value: Spreadsheet URL. It must be filled."
-msgstr "Ошибка: URL таблицы должен быть заполнен."
+#: CF7-spreadsheets.php:278
+msgid "Table options"
+msgstr "Настройки таблиц"
 
-#: ajax.php:14
-msgid "Wrong value: Spreadsheet ID. It must be a number."
-msgstr "Ошибка: ID таблицы должно быть числовым значением."
+#: CF7-spreadsheets.php:279 CF7-spreadsheets.php:378
+msgid "Google API"
+msgstr "Google API"
 
-#: ajax.php:20
-msgid "Wrong value: Send email."
-msgstr "Ошибка: Неверный параметр \"Отправлять почту также на email\"."
+#: CF7-spreadsheets.php:280
+msgid "Output"
+msgstr "Запись"
 
-#: ajax.php:26
-msgid "Wrong value: Send date/time."
-msgstr "Ошибка: Неверный параметр \"Отправлять дату\"."
-
-#: ajax.php:51 ajax.php:56
-msgid "Wrong value: JSON file not valid."
-msgstr "Ошибка: JSON файл не валиден."
-
-#: CF7-spreadsheets.php:165
+#: CF7-spreadsheets.php:294
 msgid "Google Spreadsheets"
 msgstr "Google таблицы"
 
-#: CF7-spreadsheets.php:169
-msgid "Google spreadsheet options"
-msgstr "Опции"
+#: CF7-spreadsheets.php:305
+msgid "Title"
+msgstr "Название"
 
-#: CF7-spreadsheets.php:171
+#: CF7-spreadsheets.php:308
+msgid "Options"
+msgstr "Настройки"
+
+#: CF7-spreadsheets.php:317
+msgid "Enable sending to google tables"
+msgstr "Включить отправку данных в google таблицы"
+
+#: CF7-spreadsheets.php:333
 msgid "Spreadsheet URL"
 msgstr "URL таблицы"
 
-#: CF7-spreadsheets.php:175
+#: CF7-spreadsheets.php:344
 msgid "Spreadsheet ID"
 msgstr "ID таблицы"
 
-#: CF7-spreadsheets.php:179
+#: CF7-spreadsheets.php:355
 msgid "Send on email too (continue default Contact form action)?"
 msgstr "Отправлять почту также на email (стандартное действие Contact form 7)?"
 
-#: CF7-spreadsheets.php:184
-msgid "Send the datetime?"
-msgstr "Отправлять дату/время?"
-
-#: CF7-spreadsheets.php:189
-msgid "Upload JSON from API console"
-msgstr "Загрузить JSON файл из API console"
-
-#: CF7-spreadsheets.php:193
-msgid "Current file: "
-msgstr "Текущий файл:"
-
-#: CF7-spreadsheets.php:197
+#: CF7-spreadsheets.php:371 CF7-spreadsheets.php:399 CF7-spreadsheets.php:453
 msgid "Save"
 msgstr "Сохранить"
 
-#: ajax.php:43
-msgid "Error file write."
-msgstr "Ошибка записи файла."
+#: CF7-spreadsheets.php:384
+msgid "Upload JSON from API console"
+msgstr "Загрузить JSON файл из API console"
 
-#: ajax.php:61
+#: CF7-spreadsheets.php:390
+msgid "Current service account email: "
+msgstr "Текущий email сервисного аккаунта: "
+
+#: CF7-spreadsheets.php:411
+msgid "Select form"
+msgstr "Выберите форму"
+
+#: CF7-spreadsheets.php:414
+msgid "Output queue"
+msgstr "Очередь вывода"
+
+#: CF7-spreadsheets.php:434
+msgid ""
+"If your table disabled to choose - you need to enable it on \"Table "
+"options\" tab."
+msgstr ""
+"Если форма запрещена к выбору - активируйте ее в вкладке \"Настройки таблиц\""
+
+#: CF7-spreadsheets.php:435
+msgid "Put allowed mail tags to following fields."
+msgstr "Разместите доступные теги в поля вывода."
+
+#: CF7-spreadsheets.php:439
+msgid "Allowed tags:"
+msgstr "Разрешенные теги:"
+
+#: CF7-spreadsheets.php:441
+msgid "Predefined tags:"
+msgstr "Теги по умолчанию:"
+
+#: CF7-spreadsheets.php:447
+msgid "Spreadsheet row:"
+msgstr "Строка таблицы:"
+
+#: CF7-spreadsheets.php:470 CF7-spreadsheets.php:488
+msgid "It must be filled."
+msgstr "Поле должно быть заполнено."
+
+#: CF7-spreadsheets.php:481
+msgid "It must be numeric."
+msgstr "Поле должно содержать числовое значение."
+
+#: CF7-spreadsheets.php:520 CF7-spreadsheets.php:560
 msgid "Changes saved successfully."
 msgstr "Изменения успешно сохранены."
+
+#: CF7-spreadsheets.php:537
+msgid "File updated successfully."
+msgstr "Файл обновлен успешно."
+
+#: CF7-spreadsheets.php:540
+msgid "Wrong value: JSON file not valid."
+msgstr "Ошибка: JSON файл не валиден."
+
+#: CF7-spreadsheets.php:543
+msgid "No file choosen."
+msgstr "Файл не выбран."
+
+#: CF7-spreadsheets.php:565
+msgid "Tags is empty."
+msgstr "Теги пусты."
+
+#: CF7-spreadsheets.php:571 CF7-spreadsheets.php:606
+msgid "Form does not exists."
+msgstr "Форма не существует."
+
+#: CF7-spreadsheets.php:600
+msgid "Form is empty."
+msgstr "Форма пуста."
 
 #. Name of the plugin
 msgid "CF7 Spreadsheets"
@@ -99,5 +154,5 @@ msgid "Moshenskyi Danylo"
 msgstr "Мошенский Даниил"
 
 #. Author URI of the plugin
-msgid "http://itgo-solutions.com"
-msgstr "http://itgo-solutions.com"
+msgid "https://github.com/moshenskyDV/"
+msgstr "https://github.com/moshenskyDV/"
