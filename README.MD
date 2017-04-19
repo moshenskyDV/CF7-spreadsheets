@@ -44,3 +44,5 @@ Video instruction: [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.you
     * Added forms choose to use
     * Fixed bug with checkbox (default action CF7)
     * New user interface
+7. v 2.0.1
+    * Fixed removing plugin data from database on deactivation

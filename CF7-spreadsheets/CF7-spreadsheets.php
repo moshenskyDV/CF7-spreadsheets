@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 2.0.0
+Version: 2.0.1
 Author: Moshenskyi Danylo
 Author URI: https://github.com/moshenskyDV/
 Text Domain: CF7-spreadsheets
@@ -58,7 +58,21 @@ class CF7spreadsheets
 
     public function deactivate()
     {
-
+        /*remove all plugin data*/
+        $forms = get_posts([
+            'numberposts' => -1,
+            'post_type' => 'wpcf7_contact_form'
+        ]);
+        if(!empty($forms)){
+            foreach ($forms as $form){
+                delete_post_meta($form->ID, 'CF7spreadsheets_option_url');
+                delete_post_meta($form->ID, 'CF7spreadsheets_option_id');
+                delete_post_meta($form->ID, 'CF7spreadsheets_option_enabled');
+                delete_post_meta($form->ID, 'CF7spreadsheets_option_mail');
+                delete_post_meta($form->ID, 'CF7spreadsheets_output_tags');
+            }
+        }
+        delete_option('CF7spreadsheets_api_file');
     }
 
     public function admin_styles()

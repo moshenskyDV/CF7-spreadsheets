@@ -36,6 +36,10 @@ Video instruction: [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.you
 
 == Frequently Asked Questions ==
 
+= Infinite wheel on mail send =
+
+Probably, you not enable “Sheets API” on Google developers console. [Follow this link](https://console.developers.google.com/apis/api/sheets.googleapis.com/), and click “Enable”.
+
 = Mail successfully send, but I don't see result on google table... =
 
 Please check, that service account have access to write to your table.
@@ -50,6 +54,10 @@ Open table in browser, this parameters will in address string of your browser.
 2. Output page
 
 == Changelog ==
+
+= 2.0.1 =
+
+* Fixed removing plugin data from database on deactivation
 
 = 2.0.0 =
 
@@ -81,6 +89,10 @@ Open table in browser, this parameters will in address string of your browser.
 * Alpha version
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+
+Small fix.
 
 = 2.0.0 =
 
