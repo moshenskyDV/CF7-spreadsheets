@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 2.0.1
+Version: 2.0.2
 Author: Moshenskyi Danylo
 Author URI: https://github.com/moshenskyDV/
 Text Domain: CF7-spreadsheets
@@ -164,15 +164,23 @@ class CF7spreadsheets
         $replace_to = [];
         if(!empty($arr[0])){
             foreach ($arr[0] as $tag){
-                /*user tags*/
                 if(!empty($_POST[substr($tag, 1, -1)])){
+                    /*user tags*/
                     $replace_from[] = '/' . quotemeta($tag) . '/';
-                    $replace_to[] = $_POST[substr($tag, 1, -1)];
-                }
-                /*defined tags*/
-                if($defined = $this->get_defined_tag(substr($tag, 1, -1))){
+                    if(is_array($_POST[substr($tag, 1, -1)])){
+                        /*multiselect or checkboxes*/
+                        $replace_to[] = implode(', ', $_POST[substr($tag, 1, -1)]);
+                    }else{
+                        $replace_to[] = $_POST[substr($tag, 1, -1)];
+                    }
+                }elseif($defined = $this->get_defined_tag(substr($tag, 1, -1))){
+                    /*defined tags*/
                     $replace_from[] = '/' . quotemeta($tag) . '/';
                     $replace_to[] = $defined;
+                }else{
+                    /*empty tags*/
+                    $replace_from[] = '/' . quotemeta($tag) . '/';
+                    $replace_to[] = '';
                 }
             }
             $result = preg_replace($replace_from, $replace_to, $string);

@@ -55,6 +55,11 @@ Open table in browser, this parameters will in address string of your browser.
 
 == Changelog ==
 
+= 2.0.2 =
+
+* Fixed checkbox and multiselect results
+* Removed placeholders at empty fields
+
 = 2.0.1 =
 
 * Fixed removing plugin data from database on deactivation

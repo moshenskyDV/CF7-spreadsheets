@@ -46,3 +46,6 @@ Video instruction: [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.you
     * New user interface
 7. v 2.0.1
     * Fixed removing plugin data from database on deactivation
+8. v 2.0.2
+    * Fixed checkbox and multiselect results
+    * Removed placeholders at empty fields
