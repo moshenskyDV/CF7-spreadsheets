@@ -61,10 +61,10 @@ class CF7spreadsheets
         /*remove all plugin data*/
         $forms = get_posts([
             'numberposts' => -1,
-            'post_type' => 'wpcf7_contact_form'
+            'post_type'   => 'wpcf7_contact_form',
         ]);
-        if(!empty($forms)){
-            foreach ($forms as $form){
+        if (!empty($forms)) {
+            foreach ($forms as $form) {
                 delete_post_meta($form->ID, 'CF7spreadsheets_option_url');
                 delete_post_meta($form->ID, 'CF7spreadsheets_option_id');
                 delete_post_meta($form->ID, 'CF7spreadsheets_option_enabled');
@@ -88,7 +88,8 @@ class CF7spreadsheets
     public function get_forms()
     {
         return get_posts(array(
-            'post_type' => 'wpcf7_contact_form',
+            'numberposts' => -1,
+            'post_type'   => 'wpcf7_contact_form',
         ));
     }
 
@@ -157,27 +158,28 @@ class CF7spreadsheets
         }
     }
 
-    private function replace_tags($string){
+    private function replace_tags($string)
+    {
         $regexp = '/\[.*\]/U';
         preg_match_all($regexp, $string, $arr);
         $replace_from = [];
         $replace_to = [];
-        if(!empty($arr[0])){
-            foreach ($arr[0] as $tag){
-                if(!empty($_POST[substr($tag, 1, -1)])){
+        if (!empty($arr[0])) {
+            foreach ($arr[0] as $tag) {
+                if (!empty($_POST[substr($tag, 1, -1)])) {
                     /*user tags*/
                     $replace_from[] = '/' . quotemeta($tag) . '/';
-                    if(is_array($_POST[substr($tag, 1, -1)])){
+                    if (is_array($_POST[substr($tag, 1, -1)])) {
                         /*multiselect or checkboxes*/
                         $replace_to[] = implode(', ', $_POST[substr($tag, 1, -1)]);
-                    }else{
+                    } else {
                         $replace_to[] = $_POST[substr($tag, 1, -1)];
                     }
-                }elseif($defined = $this->get_defined_tag(substr($tag, 1, -1))){
+                } elseif ($defined = $this->get_defined_tag(substr($tag, 1, -1))) {
                     /*defined tags*/
                     $replace_from[] = '/' . quotemeta($tag) . '/';
                     $replace_to[] = $defined;
-                }else{
+                } else {
                     /*empty tags*/
                     $replace_from[] = '/' . quotemeta($tag) . '/';
                     $replace_to[] = '';
@@ -191,7 +193,7 @@ class CF7spreadsheets
 
     public function main($cf7)
     {
-        if(get_post_meta($cf7->id(), 'CF7spreadsheets_option_enabled', true) == 'on'){
+        if (get_post_meta($cf7->id(), 'CF7spreadsheets_option_enabled', true) == 'on') {
             require 'vendor/autoload.php';
 
             $this->client = new Google_Client();
@@ -209,13 +211,13 @@ class CF7spreadsheets
             $this->service = new Google_Service_Sheets($this->client);
 
             $output_template = get_post_meta($cf7->id(), 'CF7spreadsheets_output_tags', true);
-            try{
+            try {
                 // Set the sheet ID
                 $fileId = esc_html(get_post_meta($cf7->id(), 'CF7spreadsheets_option_url', true)); // Copy & paste from a spreadsheet URL
                 // Build the CellData array
                 $ary_values = [];
                 $params_names_arr = json_decode($output_template);
-                foreach ($params_names_arr as $param){
+                foreach ($params_names_arr as $param) {
                     $ary_values[] = $this->replace_tags($param);
                 }
 
@@ -243,7 +245,7 @@ class CF7spreadsheets
                 $requests[] = $request;
                 // Prepare the update
                 $batchUpdateRequest = new Google_Service_Sheets_BatchUpdateSpreadsheetRequest(array(
-                    'requests' => $requests
+                    'requests' => $requests,
                 ));
 
                 try {
@@ -257,7 +259,7 @@ class CF7spreadsheets
                     echo 'Error.';
                     echo $e->getMessage();
                 }
-            }catch (Exception $e){
+            } catch (Exception $e) {
                 //not valid JSON
             }
 
@@ -352,7 +354,7 @@ class CF7spreadsheets
                                         <div class="CF7spreadsheets_col_right">
                                             <div class="form-field form-required">
                                                 <label
-                                                    for="CF7spreadsheets_option_url"><?php echo __('Spreadsheet URL', 'CF7-spreadsheets'); ?></label>
+                                                        for="CF7spreadsheets_option_url"><?php echo __('Spreadsheet URL', 'CF7-spreadsheets'); ?></label>
                                                 <input type="text"
                                                        name="CF7spreadsheets_option_url[<?php echo $form->ID; ?>]"
                                                        id="CF7spreadsheets_option_url_<?php echo $form->ID; ?>"
@@ -363,7 +365,7 @@ class CF7spreadsheets
                                             </div>
                                             <div class="form-field form-required">
                                                 <label
-                                                    for="CF7spreadsheets_option_id"><?php echo __('Spreadsheet ID', 'CF7-spreadsheets'); ?></label>
+                                                        for="CF7spreadsheets_option_id"><?php echo __('Spreadsheet ID', 'CF7-spreadsheets'); ?></label>
                                                 <input type="text"
                                                        name="CF7spreadsheets_option_id[<?php echo $form->ID; ?>]"
                                                        id="CF7spreadsheets_option_id_<?php echo $form->ID; ?>"
@@ -374,7 +376,7 @@ class CF7spreadsheets
                                             </div>
                                             <div class="form-field form-required">
                                                 <label
-                                                    for="CF7spreadsheets_option_mail_<?php echo $form->ID; ?>"><?php echo __('Send on email too (continue default Contact form action)?', 'CF7-spreadsheets'); ?></label>
+                                                        for="CF7spreadsheets_option_mail_<?php echo $form->ID; ?>"><?php echo __('Send on email too (continue default Contact form action)?', 'CF7-spreadsheets'); ?></label>
                                                 <input type="checkbox"
                                                        name="CF7spreadsheets_option_mail[<?php echo $form->ID; ?>]"
                                                        id="CF7spreadsheets_option_mail_<?php echo $form->ID; ?>" <?php $mail = get_post_meta($form->ID, 'CF7spreadsheets_option_mail', true);
@@ -403,7 +405,7 @@ class CF7spreadsheets
                         <form enctype="multipart/form-data" action="#" id="CF7spreadsheets_search_form" method="post">
                             <div class="form-field form-required">
                                 <label
-                                    for="CF7spreadsheets_api_file"><?php echo __('Upload JSON from API console', 'CF7-spreadsheets'); ?></label>
+                                        for="CF7spreadsheets_api_file"><?php echo __('Upload JSON from API console', 'CF7-spreadsheets'); ?></label>
                                 <input type="file" name="CF7spreadsheets_api_file" id="CF7spreadsheets_api_file"
                                        value="<?php echo esc_html(get_option('CF7spreadsheets_api_file')); ?>">
                                 <span class="CF7spreadsheets_status"></span>
@@ -443,7 +445,7 @@ class CF7spreadsheets
                                         <select name="CF7spreadsheets_output_select" id="CF7spreadsheets_output_select">
                                             <?php foreach ($forms as $form) { ?>
                                                 <option
-                                                    value="<?php echo $form->ID; ?>"
+                                                        value="<?php echo $form->ID; ?>"
                                                     <?php
                                                     $enabled = get_post_meta($form->ID, 'CF7spreadsheets_option_enabled', true);
                                                     if (empty($enabled) || $enabled != 'on') {
@@ -468,7 +470,9 @@ class CF7spreadsheets
                                     </p>
                                     <p class="CF7spreadsheets_allowed_tags"><?php _e('Spreadsheet row:', 'CF7-spreadsheets'); ?></p>
                                     <div id="CF7spreadsheets_table_wrapper" class="CF7spreadsheets_table_wrapper">
-                                        <button title="Add cell" type="button" class="button CF7spreadsheets_table_add">+</button>
+                                        <button title="Add cell" type="button" class="button CF7spreadsheets_table_add">
+                                            +
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -488,25 +492,25 @@ class CF7spreadsheets
             if (empty($post_val) && !empty($_POST['CF7spreadsheets_option_enabled'][$post_title]) && $_POST['CF7spreadsheets_option_enabled'][$post_title] == 'on') {
                 $this->error_list[] = array(
                     'title' => $post_title,
-                    'root' => 'CF7spreadsheets_option_url',
+                    'root'  => 'CF7spreadsheets_option_url',
                     'value' => __('It must be filled.', 'CF7-spreadsheets'),
                 );
             }
         }
         foreach ($_POST['CF7spreadsheets_option_id'] as $post_title => $post_val) {
-            if(!empty($_POST['CF7spreadsheets_option_enabled'][$post_title]) && $_POST['CF7spreadsheets_option_enabled'][$post_title] == 'on'){
+            if (!empty($_POST['CF7spreadsheets_option_enabled'][$post_title]) && $_POST['CF7spreadsheets_option_enabled'][$post_title] == 'on') {
                 if (!empty($post_val) || $post_val === '0') {
                     if (!is_numeric($post_val)) {
                         $this->error_list[] = array(
                             'title' => $post_title,
-                            'root' => 'CF7spreadsheets_option_id',
+                            'root'  => 'CF7spreadsheets_option_id',
                             'value' => __('It must be numeric.', 'CF7-spreadsheets'),
                         );
                     }
                 } else {
                     $this->error_list[] = array(
                         'title' => $post_title,
-                        'root' => 'CF7spreadsheets_option_id',
+                        'root'  => 'CF7spreadsheets_option_id',
                         'value' => __('It must be filled.', 'CF7-spreadsheets'),
                     );
                 }
@@ -515,7 +519,7 @@ class CF7spreadsheets
         if (!empty($this->error_list)) {
             echo json_encode(array(
                 'response' => 'error',
-                'content' => $this->error_list,
+                'content'  => $this->error_list,
             ));
         } else {
             foreach ($_POST['CF7spreadsheets_option_url'] as $post_title => $post_val) {
@@ -539,7 +543,7 @@ class CF7spreadsheets
             }
             echo json_encode(array(
                 'response' => 'success',
-                'content' => "<div class='CF7spreadsheets_success_ajax'>" . __('Changes saved successfully.', 'CF7-spreadsheets') . "</div>",
+                'content'  => "<div class='CF7spreadsheets_success_ajax'>" . __('Changes saved successfully.', 'CF7-spreadsheets') . "</div>",
             ));
         }
         wp_die();
@@ -579,18 +583,18 @@ class CF7spreadsheets
                 update_post_meta($form->ID, 'CF7spreadsheets_output_tags', json_encode($sanitized_tags));
                 echo json_encode(array(
                     'response' => 'success',
-                    'content' => __('Changes saved successfully.', 'CF7-spreadsheets'),
+                    'content'  => __('Changes saved successfully.', 'CF7-spreadsheets'),
                 ));
             } else {
                 echo json_encode(array(
                     'response' => 'error',
-                    'content' => __('Tags is empty.', 'CF7-spreadsheets'),
+                    'content'  => __('Tags is empty.', 'CF7-spreadsheets'),
                 ));
             }
         } else {
             echo json_encode(array(
                 'response' => 'error',
-                'content' => __('Form does not exists.', 'CF7-spreadsheets'),
+                'content'  => __('Form does not exists.', 'CF7-spreadsheets'),
             ));
         }
         wp_die();
@@ -606,26 +610,26 @@ class CF7spreadsheets
                 if (!empty($filled)) {
                     echo json_encode(array(
                         'response' => 'success',
-                        'content' => $post_data,
-                        'filled' => $filled,
+                        'content'  => $post_data,
+                        'filled'   => $filled,
                     ));
                 } else {
                     echo json_encode(array(
                         'response' => 'success',
-                        'content' => $post_data,
-                        'filled' => false,
+                        'content'  => $post_data,
+                        'filled'   => false,
                     ));
                 }
             } else {
                 echo json_encode(array(
                     'response' => 'error',
-                    'content' => "<div class='CF7spreadsheets_error_ajax'>" . __('Form is empty.', 'CF7-spreadsheets') . "</div>",
+                    'content'  => "<div class='CF7spreadsheets_error_ajax'>" . __('Form is empty.', 'CF7-spreadsheets') . "</div>",
                 ));
             }
         } else {
             echo json_encode(array(
                 'response' => 'error',
-                'content' => "<div class='CF7spreadsheets_error_ajax'>" . __('Form does not exists.', 'CF7-spreadsheets') . "</div>",
+                'content'  => "<div class='CF7spreadsheets_error_ajax'>" . __('Form does not exists.', 'CF7-spreadsheets') . "</div>",
             ));
         }
         wp_die();
@@ -642,7 +646,7 @@ add_action('plugins_loaded', 'CF7_spreadsheets_language');
 function CF7_spreadsheets_language()
 {
     /*translate*/
-    load_plugin_textdomain('CF7-spreadsheets', false, dirname(plugin_basename(__FILE__ )) . '/languages/');
+    load_plugin_textdomain('CF7-spreadsheets', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
 
 /*main function*/

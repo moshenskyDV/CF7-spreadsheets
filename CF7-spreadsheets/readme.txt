@@ -55,6 +55,10 @@ Open table in browser, this parameters will in address string of your browser.
 
 == Changelog ==
 
+= 2.0.3 =
+
+* Posts limit changed to unlimited
+
 = 2.0.2 =
 
 * Fixed checkbox and multiselect results
