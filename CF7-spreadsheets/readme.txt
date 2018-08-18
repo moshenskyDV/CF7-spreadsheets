@@ -1,9 +1,9 @@
 === Plugin Name ===
 Contributors: Moshenskyi Danylo
 Tags: contact form 7, google, spreadsheets, table, data, merge, save mail
-Requires at least: 4.7
-Tested up to: 4.7
-Stable tag: 2.0.3
+Requires at least: 4.9.6
+Tested up to: 4.9.6
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,10 @@ Open table in browser, this parameters will in address string of your browser.
 2. Output page
 
 == Changelog ==
+
+= 2.0.4 =
+
+* Fixed zero transfer as empty string
 
 = 2.0.3 =
 

@@ -49,3 +49,7 @@ Video instruction: [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.you
 8. v 2.0.2
     * Fixed checkbox and multiselect results
     * Removed placeholders at empty fields
+9. v 2.0.3
+    * Posts limit changed to unlimited
+10. v.2.0.4
+    * Fixed zero transfer as empty string
