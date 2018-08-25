@@ -2,6 +2,10 @@
 
 Wordpress plugin that merge Contact form 7 functional with google spreadsheets (also works with private spreadsheet).
 
+[![WordPress plugin](https://img.shields.io/wordpress/plugin/dt/cf7-spreadsheets.svg)](https://wordpress.org/plugins/cf7-spreadsheets/advanced) [![WordPress plugin](https://img.shields.io/wordpress/plugin/v/cf7-spreadsheets.svg?label=version)](https://wordpress.org/plugins/cf7-spreadsheets/#developers) [![Bitcoin wallet statistic](https://img.shields.io/badge/dynamic/json.svg?label=donations&url=https%3A%2F%2Fblockchain.info%2Frawaddr%2F126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL&query=%24.total_received&colorB=orange&suffix=%20BTC)](https://www.blockchain.com/btc/address/126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL)
+
+Donation address (BTC): `126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL`
+
 ### Installation
 
 1. Upload plugin folder `CF7 -sreadsheets` to `wp-content/plugins` directory
