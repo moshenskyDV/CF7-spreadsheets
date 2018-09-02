@@ -2,138 +2,150 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CF7 Spreadsheets\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-27 11:41+0000\n"
-"PO-Revision-Date: 2017-03-27 11:42+0000\n"
-"Last-Translator: admin <qwe@qwe.qwe>\n"
-"Language-Team: Russian\n"
-"Language: ru-RU\n"
+"POT-Creation-Date: 2018-09-02 09:49+0000\n"
+"PO-Revision-Date: 2018-09-02 09:50+0000\n"
+"Last-Translator: admin <moshensky@dskf.sdjf>\n"
+"Language-Team: Русский\n"
+"Language: ru_RU\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
-"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2)\n"
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco - https://localise.biz/"
+"X-Generator: Loco https://localise.biz/"
 
-#: CF7-spreadsheets.php:267
+#: CF7-spreadsheets.php:311
 msgid "\"Contact form 7\" plugin required."
 msgstr "Требуется плагин \"Contact form 7\"."
 
-#: CF7-spreadsheets.php:278
+#: CF7-spreadsheets.php:322
 msgid "Table options"
 msgstr "Настройки таблиц"
 
-#: CF7-spreadsheets.php:279 CF7-spreadsheets.php:378
+#: CF7-spreadsheets.php:323 CF7-spreadsheets.php:422
 msgid "Google API"
 msgstr "Google API"
 
-#: CF7-spreadsheets.php:280
+#: CF7-spreadsheets.php:324
 msgid "Output"
 msgstr "Запись"
 
-#: CF7-spreadsheets.php:294
+#: CF7-spreadsheets.php:338
 msgid "Google Spreadsheets"
 msgstr "Google таблицы"
 
-#: CF7-spreadsheets.php:305
+#: CF7-spreadsheets.php:349
 msgid "Title"
 msgstr "Название"
 
-#: CF7-spreadsheets.php:308
+#: CF7-spreadsheets.php:352
 msgid "Options"
 msgstr "Настройки"
 
-#: CF7-spreadsheets.php:317
+#: CF7-spreadsheets.php:361
 msgid "Enable sending to google tables"
 msgstr "Включить отправку данных в google таблицы"
 
-#: CF7-spreadsheets.php:333
+#: CF7-spreadsheets.php:377
 msgid "Spreadsheet URL"
 msgstr "URL таблицы"
 
-#: CF7-spreadsheets.php:344
+#: CF7-spreadsheets.php:388
 msgid "Spreadsheet ID"
 msgstr "ID таблицы"
 
-#: CF7-spreadsheets.php:355
+#: CF7-spreadsheets.php:399
 msgid "Send on email too (continue default Contact form action)?"
 msgstr "Отправлять почту также на email (стандартное действие Contact form 7)?"
 
-#: CF7-spreadsheets.php:371 CF7-spreadsheets.php:399 CF7-spreadsheets.php:453
+#: CF7-spreadsheets.php:415 CF7-spreadsheets.php:443 CF7-spreadsheets.php:517
 msgid "Save"
 msgstr "Сохранить"
 
-#: CF7-spreadsheets.php:384
+#: CF7-spreadsheets.php:428
 msgid "Upload JSON from API console"
 msgstr "Загрузить JSON файл из API console"
 
-#: CF7-spreadsheets.php:390
+#: CF7-spreadsheets.php:434
 msgid "Current service account email: "
 msgstr "Текущий email сервисного аккаунта: "
 
-#: CF7-spreadsheets.php:411
+#: CF7-spreadsheets.php:455
 msgid "Select form"
 msgstr "Выберите форму"
 
-#: CF7-spreadsheets.php:414
+#: CF7-spreadsheets.php:458
 msgid "Output queue"
 msgstr "Очередь вывода"
 
-#: CF7-spreadsheets.php:434
+#: CF7-spreadsheets.php:478
 msgid ""
 "If your table disabled to choose - you need to enable it on \"Table "
 "options\" tab."
 msgstr ""
 "Если форма запрещена к выбору - активируйте ее в вкладке \"Настройки таблиц\""
 
-#: CF7-spreadsheets.php:435
+#: CF7-spreadsheets.php:479
 msgid "Put allowed mail tags to following fields."
 msgstr "Разместите доступные теги в поля вывода."
 
-#: CF7-spreadsheets.php:439
+#: CF7-spreadsheets.php:483
 msgid "Allowed tags:"
 msgstr "Разрешенные теги:"
 
-#: CF7-spreadsheets.php:441
-msgid "Predefined tags:"
-msgstr "Теги по умолчанию:"
+#: CF7-spreadsheets.php:485
+msgid "Special mail tags for submissions:"
+msgstr "Специальные теги (относительно письма):"
 
-#: CF7-spreadsheets.php:447
+#: CF7-spreadsheets.php:491
+msgid "Post-related special mail tags:"
+msgstr "Специальные теги (относительно поста):"
+
+#: CF7-spreadsheets.php:497
+msgid "Site-related special mail tags:"
+msgstr "Специальные теги (относительно сайта):"
+
+#: CF7-spreadsheets.php:503
+msgid "User-related special mail tags:"
+msgstr "Специальные теги (относительно пользователя):"
+
+#: CF7-spreadsheets.php:509
 msgid "Spreadsheet row:"
 msgstr "Строка таблицы:"
 
-#: CF7-spreadsheets.php:470 CF7-spreadsheets.php:488
+#: CF7-spreadsheets.php:534 CF7-spreadsheets.php:552
 msgid "It must be filled."
 msgstr "Поле должно быть заполнено."
 
-#: CF7-spreadsheets.php:481
+#: CF7-spreadsheets.php:545
 msgid "It must be numeric."
 msgstr "Поле должно содержать числовое значение."
 
-#: CF7-spreadsheets.php:520 CF7-spreadsheets.php:560
+#: CF7-spreadsheets.php:584 CF7-spreadsheets.php:624
 msgid "Changes saved successfully."
 msgstr "Изменения успешно сохранены."
 
-#: CF7-spreadsheets.php:537
+#: CF7-spreadsheets.php:601
 msgid "File updated successfully."
 msgstr "Файл обновлен успешно."
 
-#: CF7-spreadsheets.php:540
+#: CF7-spreadsheets.php:604
 msgid "Wrong value: JSON file not valid."
 msgstr "Ошибка: JSON файл не валиден."
 
-#: CF7-spreadsheets.php:543
+#: CF7-spreadsheets.php:607
 msgid "No file choosen."
 msgstr "Файл не выбран."
 
-#: CF7-spreadsheets.php:565
+#: CF7-spreadsheets.php:629
 msgid "Tags is empty."
 msgstr "Теги пусты."
 
-#: CF7-spreadsheets.php:571 CF7-spreadsheets.php:606
+#: CF7-spreadsheets.php:635 CF7-spreadsheets.php:670
 msgid "Form does not exists."
 msgstr "Форма не существует."
 
-#: CF7-spreadsheets.php:600
+#: CF7-spreadsheets.php:664
 msgid "Form is empty."
 msgstr "Форма пуста."
 

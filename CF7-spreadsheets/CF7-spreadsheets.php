@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 2.0.4
+Version: 2.1.0
 Author: Moshenskyi Danylo
 Author URI: https://github.com/moshenskyDV/
 Text Domain: CF7-spreadsheets
@@ -38,8 +38,31 @@ class CF7spreadsheets
     public $client;
     public $service;
     private $error_list = [];
+
+    /**
+     * Custom tags by plugin
+     * @var array
+     */
     private $allowed_tags = ['text', 'email', 'url', 'tel', 'number', 'range', 'date', 'textarea', 'select', 'checkbox', 'radio', 'acceptance', 'quiz'];
-    public $predefined = ['def-date', 'def-datetime', 'def-user-ip'];
+
+    /**
+     * Related to https://contactform7.com/special-mail-tags/
+     * @var array
+     */
+    public $predefined_mail = ['_remote_ip', '_user_agent', '_url', '_date', '_time', '_invalid_fields', '_serial_number'];
+    public $predefined_post = ['_post_id', '_post_name', '_post_title', '_post_url', '_post_author', '_post_author_email'];
+    public $predefined_site = ['_site_title', '_site_description', '_site_url', '_site_admin_email'];
+    public $predefined_user = ['_user_login', '_user_email', '_user_url', '_user_first_name', '_user_last_name', '_user_nickname', '_user_display_name'];
+
+    /**
+     * Backward compatibility with versions <2.0.4
+     * @var array
+     */
+    public $obsolete_predefined_tags = [
+        'def-date'     => '_date',
+        'def-datetime' => '_date',
+        'def-user-ip'  => '_remote_ip',
+    ];
 
     public function __construct($file)
     {
@@ -140,24 +163,6 @@ class CF7spreadsheets
         return $assoc_arr;
     }
 
-    private function get_defined_tag($tag)
-    {
-        switch ($tag) {
-            case 'def-date': {
-                return date('d-m-Y', time());
-            }
-            case 'def-datetime': {
-                return date('d-m-Y H:i:s', time());
-            }
-            case 'def-user-ip': {
-                return $_SERVER['REMOTE_ADDR'];
-            }
-            default: {
-                return false;
-            }
-        }
-    }
-
     private function replace_tags($string)
     {
         $regexp = '/\[.*\]/U';
@@ -166,17 +171,31 @@ class CF7spreadsheets
         $replace_to = [];
         if (!empty($arr[0])) {
             foreach ($arr[0] as $tag) {
-                if (!empty($_POST[substr($tag, 1, -1)]) || $_POST[substr($tag, 1, -1)] === '0') {
+                $clear_tag = substr($tag, 1, -1);
+                //backward compability
+                if (in_array($clear_tag, array_keys($this->obsolete_predefined_tags))){
+                    $clear_tag = $this->obsolete_predefined_tags[$clear_tag];
+                }
+
+                if (!empty($_POST[$clear_tag]) || $_POST[$clear_tag] === '0') {
                     /*user tags*/
                     $replace_from[] = '/' . quotemeta($tag) . '/';
-                    if (is_array($_POST[substr($tag, 1, -1)])) {
+                    if (is_array($_POST[$clear_tag])) {
                         /*multiselect or checkboxes*/
-                        $replace_to[] = implode(', ', $_POST[substr($tag, 1, -1)]);
+                        $replace_to[] = implode(', ', $_POST[$clear_tag]);
                     } else {
-                        $replace_to[] = $_POST[substr($tag, 1, -1)];
+                        $replace_to[] = $_POST[$clear_tag];
                     }
-                } elseif ($defined = $this->get_defined_tag(substr($tag, 1, -1))) {
-                    /*defined tags*/
+                } elseif ($defined = wpcf7_special_mail_tag(false, $clear_tag, false)) {
+                    $replace_from[] = '/' . quotemeta($tag) . '/';
+                    $replace_to[] = $defined;
+                } elseif ($defined = wpcf7_post_related_smt(false, $clear_tag, false)) {
+                    $replace_from[] = '/' . quotemeta($tag) . '/';
+                    $replace_to[] = $defined;
+                } elseif ($defined = wpcf7_site_related_smt(false, $clear_tag, false)) {
+                    $replace_from[] = '/' . quotemeta($tag) . '/';
+                    $replace_to[] = $defined;
+                } elseif ($defined = wpcf7_user_related_smt(false, $clear_tag, false)) {
                     $replace_from[] = '/' . quotemeta($tag) . '/';
                     $replace_to[] = $defined;
                 } else {
@@ -462,9 +481,27 @@ class CF7spreadsheets
                                 <div class="CF7spreadsheets_col_right">
                                     <p class="CF7spreadsheets_allowed_tags"><?php _e('Allowed tags:', 'CF7-spreadsheets'); ?></p>
                                     <p id="CF7spreadsheets_allowed_tags" class="CF7spreadsheets_allowed_tags"></p>
-                                    <p class="CF7spreadsheets_allowed_tags"><?php _e('Predefined tags:', 'CF7-spreadsheets'); ?></p>
+                                    <p class="CF7spreadsheets_allowed_tags"><?php _e('Special mail tags for submissions:', 'CF7-spreadsheets'); ?></p>
                                     <p class="CF7spreadsheets_allowed_tags">
-                                        <?php foreach ($this->predefined as $item) { ?>
+                                        <?php foreach ($this->predefined_mail as $item) { ?>
+                                            <span>[<?php echo $item ?>]</span>
+                                        <?php } ?>
+                                    </p>
+                                    <p class="CF7spreadsheets_allowed_tags"><?php _e('Post-related special mail tags:', 'CF7-spreadsheets'); ?></p>
+                                    <p class="CF7spreadsheets_allowed_tags">
+                                        <?php foreach ($this->predefined_post as $item) { ?>
+                                            <span>[<?php echo $item ?>]</span>
+                                        <?php } ?>
+                                    </p>
+                                    <p class="CF7spreadsheets_allowed_tags"><?php _e('Site-related special mail tags:', 'CF7-spreadsheets'); ?></p>
+                                    <p class="CF7spreadsheets_allowed_tags">
+                                        <?php foreach ($this->predefined_site as $item) { ?>
+                                            <span>[<?php echo $item ?>]</span>
+                                        <?php } ?>
+                                    </p>
+                                    <p class="CF7spreadsheets_allowed_tags"><?php _e('User-related special mail tags:', 'CF7-spreadsheets'); ?></p>
+                                    <p class="CF7spreadsheets_allowed_tags">
+                                        <?php foreach ($this->predefined_user as $item) { ?>
                                             <span>[<?php echo $item ?>]</span>
                                         <?php } ?>
                                     </p>

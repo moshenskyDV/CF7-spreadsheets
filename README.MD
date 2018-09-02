@@ -57,3 +57,5 @@ Video instruction: [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.you
     * Posts limit changed to unlimited
 10. v.2.0.4
     * Fixed zero transfer as empty string
+11. v.2.1.0
+    * Added CF7 special tags
