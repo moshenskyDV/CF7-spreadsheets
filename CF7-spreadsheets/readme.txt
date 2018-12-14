@@ -1,9 +1,10 @@
 === Plugin Name ===
 Contributors: Moshenskyi Danylo
+Donate link:  https://www.blockchain.com/btc/address/126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL
 Tags: contact form 7, google, spreadsheets, table, data, merge, save mail, private
 Requires at least: 4.7
-Tested up to: 4.9.6
-Stable tag: 2.1.0
+Tested up to: 5.0.1
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +55,11 @@ Open table in browser, this parameters will in address string of your browser.
 2. Output page
 
 == Changelog ==
+
+= 2.1.1 =
+
+* Added shortcodes support
+* Fixed duplicate require upgrade.php file
 
 = 2.1.0 =
 
