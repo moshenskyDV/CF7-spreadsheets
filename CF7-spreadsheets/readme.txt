@@ -16,6 +16,7 @@ Wordpress plugin that merge Contact form 7 functional with google spreadsheets (
 How to use:
 
 Video instruction: [https://www.youtube.com/watch?v=ZgZRBByY4fc](https://www.youtube.com/watch?v=ZgZRBByY4fc)
+
 Video instruction (OLD versions): [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.youtube.com/watch?v=5ICWr5MMo7E)
 
 1. Prepare API

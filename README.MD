@@ -13,7 +13,9 @@ Donation address (BTC): `126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL`
 
 ### How to
 
-Video instruction: [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.youtube.com/watch?v=5ICWr5MMo7E)
+Video instruction: [https://www.youtube.com/watch?v=ZgZRBByY4fc](https://www.youtube.com/watch?v=ZgZRBByY4fc)
+
+Video instruction (OLD versions): [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.youtube.com/watch?v=5ICWr5MMo7E)
 
 1. Prepare API
     * Go to the [Console Developers API](https://console.developers.google.com/)
