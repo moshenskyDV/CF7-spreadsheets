@@ -89,7 +89,10 @@ p.CF7spreadsheets_allowed_tags span{
 }
 
 .CF7spreadsheets_table_wrapper input{
-    width: 100px;
+    width: calc(100% - 130px);
+    height: 28px;
+    line-height: 28px;
+    vertical-align: middle;
 }
 
 button.button.CF7spreadsheets_table_remove:hover{
@@ -101,6 +104,5 @@ button.button.CF7spreadsheets_table_add:hover{
 }
 
 .CF7spreadsheets_table_cell{
-    display: inline-block;
-    vertical-align: middle;
+    padding-bottom: 2px;
 }

@@ -56,13 +56,15 @@ jQuery(document).ready(function ($) {
     });
 
     $('#CF7spreadsheets_output_submit').click(function () {
-        var data = {};
-        $('input[name="CF7spreadsheets_output_tags[]"]').serializeArray().map(function(x,i){data[i] = x.value;});
+        var tags = {}, types = {};
+        $('input[name="CF7spreadsheets_output_tags[]"]').serializeArray().map(function(x,i){tags[i] = x.value;});
+        $('select[name="CF7spreadsheets_output_types[]"]').serializeArray().map(function(x,i){types[i] = x.value;});
         $('.CF7spreadsheets_response').html('');
         $.post(ajaxurl, {
             action: 'CF7spreadsheets_update_ajax_output',
             CF7spreadsheets_post_id: $('#CF7spreadsheets_output_select').val(),
-            CF7spreadsheets_output_tags: data,
+            CF7spreadsheets_output_tags: tags,
+            CF7spreadsheets_output_types: types
         }, function ($res) {
             try{
                 var $res_json = JSON.parse($res);
@@ -98,7 +100,7 @@ jQuery(document).ready(function ($) {
                                     $.each($res_json.content, function (index, value){
                                         $.each(value, function (index, value){
                                             $('#CF7spreadsheets_allowed_tags').append('<span>['+value+']</span>');
-                                            $('.CF7spreadsheets_table_add').before('<div class="CF7spreadsheets_table_cell"><input type="text" name="CF7spreadsheets_output_tags[]" value="['+value+']"><button title="Remove cell" type="button" class="button CF7spreadsheets_table_remove">-</button></div>');
+                                            $('.CF7spreadsheets_table_add').before('<div class="CF7spreadsheets_table_cell"><input type="text" name="CF7spreadsheets_output_tags[]" value="['+value+']"><select name="CF7spreadsheets_output_types[]"><option value="string">String</option><option value="number">Number</option><option value="boolean">True/False</option><option value="formula">Formula</option></select><button title="Remove cell" type="button" class="button CF7spreadsheets_table_remove">-</button></div>');
                                         });
                                     });
                                 }else{
@@ -107,9 +109,11 @@ jQuery(document).ready(function ($) {
                                             $('#CF7spreadsheets_allowed_tags').append('<span>['+value+']</span>');
                                         });
                                     });
-                                    $filled_arr = JSON.parse($res_json.filled);
-                                    $.each($filled_arr, function (index, value){
-                                        $('.CF7spreadsheets_table_add').before('<div class="CF7spreadsheets_table_cell"><input type="text" name="CF7spreadsheets_output_tags[]" value="'+value+'"><button title="Remove cell" type="button" class="button CF7spreadsheets_table_remove">-</button></div>');
+                                    var $filled_tags = JSON.parse($res_json.filled_tags);
+                                    var $filled_types = JSON.parse($res_json.filled_types || '[]');
+                                    $.each($filled_tags, function (index, value){
+                                        console.log($filled_tags, $filled_types);
+                                        $('.CF7spreadsheets_table_add').before('<div class="CF7spreadsheets_table_cell"><input type="text" name="CF7spreadsheets_output_tags[]" value="'+value+'"><select name="CF7spreadsheets_output_types[]"><option ' + ($filled_types[index] === 'string' ? 'selected' : '') + ' value="string">String</option><option ' + ($filled_types[index] === 'number' ? 'selected' : '') + '  value="number">Number</option><option ' + ($filled_types[index] === 'boolean' ? 'selected' : '') + '  value="boolean">True/False</option><option ' + ($filled_types[index] === 'formula' ? 'selected' : '') + '  value="formula">Formula</option></select><button title="Remove cell" type="button" class="button CF7spreadsheets_table_remove">-</button></div>');
                                     });
                                 }
                             }
@@ -145,6 +149,6 @@ jQuery(document).ready(function ($) {
         $(this).parent().remove();
     });
     $('.CF7spreadsheets_table_add').click(function (){
-        $(this).before('<div class="CF7spreadsheets_table_cell"><input type="text" name="CF7spreadsheets_output_tags[]"><button title="Remove cell" type="button" class="button CF7spreadsheets_table_remove">-</button></div>');
+        $(this).before('<div class="CF7spreadsheets_table_cell"><input type="text" name="CF7spreadsheets_output_tags[]"><select name="CF7spreadsheets_output_types[]"><option value="string">String</option><option value="number">Number</option><option value="boolean">True/False</option><option value="formula">Formula</option></select><button title="Remove cell" type="button" class="button CF7spreadsheets_table_remove">-</button></div>');
     });
 });

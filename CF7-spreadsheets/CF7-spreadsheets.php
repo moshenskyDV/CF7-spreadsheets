@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 2.1.1
+Version: 2.1.2
 Author: Moshenskyi Danylo
 Author URI: https://github.com/moshenskyDV/
 Text Domain: CF7-spreadsheets
@@ -44,6 +44,12 @@ class CF7spreadsheets
      * @var array
      */
     private $allowed_tags = ['text', 'email', 'url', 'tel', 'number', 'range', 'date', 'textarea', 'select', 'checkbox', 'radio', 'acceptance', 'quiz'];
+
+    /**
+     * Allowed by google sheets types
+     * @var array
+     */
+    private $allowed_types = ['string', 'number', 'boolean', 'formula'];
 
     /**
      * Related to https://contactform7.com/special-mail-tags/
@@ -93,6 +99,7 @@ class CF7spreadsheets
                 delete_post_meta($form->ID, 'CF7spreadsheets_option_enabled');
                 delete_post_meta($form->ID, 'CF7spreadsheets_option_mail');
                 delete_post_meta($form->ID, 'CF7spreadsheets_output_tags');
+                delete_post_meta($form->ID, 'CF7spreadsheets_output_types');
             }
         }
         delete_option('CF7spreadsheets_api_file');
@@ -172,8 +179,8 @@ class CF7spreadsheets
         if (!empty($arr[0])) {
             foreach ($arr[0] as $tag) {
                 $clear_tag = substr($tag, 1, -1);
-                //backward compability
-                if (in_array($clear_tag, array_keys($this->obsolete_predefined_tags))){
+                //backward compatibility
+                if (in_array($clear_tag, array_keys($this->obsolete_predefined_tags))) {
                     $clear_tag = $this->obsolete_predefined_tags[$clear_tag];
                 }
 
@@ -210,9 +217,10 @@ class CF7spreadsheets
         return $string;
     }
 
-     private function exec_shortcodes ($string) {
+    private function exec_shortcodes($string)
+    {
         return do_shortcode($string);
-     }
+    }
 
     public function main($cf7)
     {
@@ -233,22 +241,32 @@ class CF7spreadsheets
             $this->client->setRedirectUri('http://' . $_SERVER['HTTP_HOST']);
             $this->service = new Google_Service_Sheets($this->client);
 
-            $output_template = get_post_meta($cf7->id(), 'CF7spreadsheets_output_tags', true);
             try {
                 // Set the sheet ID
                 $fileId = esc_html(get_post_meta($cf7->id(), 'CF7spreadsheets_option_url', true)); // Copy & paste from a spreadsheet URL
                 // Build the CellData array
-                $ary_values = [];
-                $params_names_arr = json_decode($output_template);
-                foreach ($params_names_arr as $param) {
-                    $ary_values[] = $this->replace_tags($this->exec_shortcodes($param));
-                }
-
+                $params_names = json_decode(get_post_meta($cf7->id(), 'CF7spreadsheets_output_tags', true));
+                $params_types = json_decode(get_post_meta($cf7->id(), 'CF7spreadsheets_output_types', true));
                 $values = array();
-                foreach ($ary_values as $d) {
+                foreach ($params_names as $i => $param) {
+                    $d = $this->replace_tags($this->exec_shortcodes($param));
                     $cellData = new Google_Service_Sheets_CellData();
                     $value = new Google_Service_Sheets_ExtendedValue();
-                    $value->setStringValue($d);
+                    switch ($params_types[$i]) {
+                        case 'formula':
+                            $value->setFormulaValue($d);
+                            break;
+                        case 'boolean':
+                            $value->setBoolValue((boolean) $d);
+                            break;
+                        case 'number':
+                            $value->setNumberValue((float) $d);
+                            break;
+                        case 'string':
+                        default:
+                            $value->setStringValue($d);
+                            break;
+                    }
                     $cellData->setUserEnteredValue($value);
                     $values[] = $cellData;
                 }
@@ -512,8 +530,7 @@ class CF7spreadsheets
                                     <p class="CF7spreadsheets_allowed_tags"><?php _e('Spreadsheet row:', 'CF7-spreadsheets'); ?></p>
                                     <div id="CF7spreadsheets_table_wrapper" class="CF7spreadsheets_table_wrapper">
                                         <button title="Add cell" type="button" class="button CF7spreadsheets_table_add">
-                                            +
-                                        </button>
+                                            + <?php echo __('Add cell', 'CF7-spreadsheets'); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -618,10 +635,15 @@ class CF7spreadsheets
         if ($form && $form->post_type == 'wpcf7_contact_form') {
             if (!empty($_POST['CF7spreadsheets_output_tags']) && is_array($_POST['CF7spreadsheets_output_tags'])) {
                 $sanitized_tags = [];
+                $sanitized_types = [];
                 foreach ($_POST['CF7spreadsheets_output_tags'] as $tag) {
                     array_push($sanitized_tags, sanitize_text_field($tag));
                 }
+                foreach ($_POST['CF7spreadsheets_output_types'] as $type) {
+                    array_push($sanitized_types, in_array($type, $this->allowed_types) ? $type : 'string');
+                }
                 update_post_meta($form->ID, 'CF7spreadsheets_output_tags', json_encode($sanitized_tags));
+                update_post_meta($form->ID, 'CF7spreadsheets_output_types', json_encode($sanitized_types));
                 echo json_encode(array(
                     'response' => 'success',
                     'content'  => __('Changes saved successfully.', 'CF7-spreadsheets'),
@@ -647,12 +669,14 @@ class CF7spreadsheets
         if ($form && $form->post_type == 'wpcf7_contact_form') {
             $post_data = $this->get_form_data($form);
             if (!empty($post_data)) {
-                $filled = get_post_meta($form->ID, 'CF7spreadsheets_output_tags', true);
-                if (!empty($filled)) {
+                $filled_tags = get_post_meta($form->ID, 'CF7spreadsheets_output_tags', true);
+                $filled_types = get_post_meta($form->ID, 'CF7spreadsheets_output_types', true);
+                if (!empty($filled_tags)) {
                     echo json_encode(array(
-                        'response' => 'success',
-                        'content'  => $post_data,
-                        'filled'   => $filled,
+                        'response'     => 'success',
+                        'content'      => $post_data,
+                        'filled_tags'  => $filled_tags,
+                        'filled_types' => $filled_types
                     ));
                 } else {
                     echo json_encode(array(

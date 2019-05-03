@@ -1,10 +1,9 @@
 === Plugin Name ===
 Contributors: Moshenskyi Danylo
-Donate link:  https://www.blockchain.com/btc/address/126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL
-Tags: contact form 7, google, spreadsheets, table, data, merge, save mail, private
+Tags: contact form 7, google, spreadsheets, table, data, merge, save mail
 Requires at least: 4.7
-Tested up to: 5.0.1
-Stable tag: 2.1.1
+Tested up to: 5.0.4
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +15,8 @@ Wordpress plugin that merge Contact form 7 functional with google spreadsheets (
 
 How to use:
 
-Video instruction: [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.youtube.com/watch?v=5ICWr5MMo7E)
+Video instruction: [https://www.youtube.com/watch?v=ZgZRBByY4fc](https://www.youtube.com/watch?v=ZgZRBByY4fc)
+Video instruction (OLD versions): [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.youtube.com/watch?v=5ICWr5MMo7E)
 
 1. Prepare API
     * Go to the [Console Developers API](https://console.developers.google.com/)
@@ -56,6 +56,10 @@ Open table in browser, this parameters will in address string of your browser.
 
 == Changelog ==
 
+= 2.1.2 =
+
+* Added data types (Number, Boolean, Formula, String)
+
 = 2.1.1 =
 
 * Added shortcodes support
@@ -64,10 +68,6 @@ Open table in browser, this parameters will in address string of your browser.
 = 2.1.0 =
 
 * Added CF7 special tags
-
-= 2.0.4 =
-
-* Fixed zero transfer as empty string
 
 = 2.0.3 =
 
@@ -112,6 +112,10 @@ Open table in browser, this parameters will in address string of your browser.
 * Alpha version
 
 == Upgrade Notice ==
+
+= 2.1.2 =
+
+Column data types (can send formulas to google sheets).
 
 = 2.0.1 =
 
