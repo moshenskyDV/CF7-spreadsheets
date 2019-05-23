@@ -1,4 +1,8 @@
 {
+    "scripts": {
+        "lint": "php vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --diff --dry-run --ansi",
+        "lint-fix": "php vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --diff --ansi"
+    },
     "require": {
         "asimlqt/php-google-spreadsheet-client": "*",
         "firebase/php-jwt": "*",
