@@ -19,4 +19,4 @@ before_script:
   - composer update
 
 script:
-  - ./vendor/bin/php-cs-fixer fix -v --diff --dry-run
+  - ./vendor/bin/php-cs-fixer fix -v --diff --dry-run CF7-spreadsheets.php
