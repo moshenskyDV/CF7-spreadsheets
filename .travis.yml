@@ -12,6 +12,7 @@ cache:
     - $HOME/.composer/cache
     - $HOME/.php-cs-fixer
     - $HOME/.local
+    - vendor
 
 before_script:
   - cd ./CF7-spreadsheets
