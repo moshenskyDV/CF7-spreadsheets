@@ -14,6 +14,7 @@ cache:
     - $HOME/.local
 
 before_script:
+  - cd ./CF7-spreadsheets
   - composer self-update
   - composer update
 
