@@ -1,0 +1,18 @@
+{
+    "require": {
+        "asimlqt/php-google-spreadsheet-client": "*",
+        "firebase/php-jwt": "*",
+        "google/apiclient": "*",
+        "google/apiclient-services": "*",
+        "google/auth": "*",
+        "guzzlehttp/guzzle": "*",
+        "guzzlehttp/promises": "*",
+        "guzzlehttp/psr7": "*",
+        "monolog/monolog": "*",
+        "phpseclib/phpseclib": "*",
+        "psr/cache": "*",
+        "psr/http-message": "*",
+        "psr/log": "*",
+        "friendsofphp/php-cs-fixer": "^2.15"
+    }
+}
