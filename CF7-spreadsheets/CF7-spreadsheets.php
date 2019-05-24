@@ -30,11 +30,13 @@ License: MIT
 
 require_once ABSPATH.'wp-admin/includes/upgrade.php';
 
-class CF7spreadsheets{
+class CF7spreadsheets
+{
     public $plugin_name = '';
     public $plugin_path = '';
     public $plugin_url = '';
     public $client;
+    public $service;
 
     /**
      * Related to https://contactform7.com/special-mail-tags/.
@@ -58,7 +60,6 @@ class CF7spreadsheets{
     ];
     private $error_list = [];
 
-    public $service;
     /**
      * Custom tags by plugin.
      *
