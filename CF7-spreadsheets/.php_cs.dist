@@ -1,0 +1,45 @@
+<?php
+
+$header = <<<'HEADER'
+CF7 Spreadsheets (wordpress plugin).
+HEADER;
+
+$rules = [
+    '@Symfony' => true,
+    '@Symfony:risky' => true,
+    'array_syntax' => [
+        'syntax' => 'short',
+    ],
+    'combine_consecutive_issets' => true,
+    'combine_consecutive_unsets' => true,
+    'header_comment' => [
+        'header' => $header,
+    ],
+    'no_extra_blank_lines' => true,
+    'no_php4_constructor' => true,
+    'no_useless_else' => true,
+    'no_useless_return' => true,
+    'ordered_class_elements' => true,
+    'ordered_imports' => true,
+    'phpdoc_order' => true,
+    '@PHP56Migration' => true,
+    '@PHP56Migration:risky' => true,
+    'compact_nullable_typehint' => true,
+    'void_return' => null,
+];
+
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__)
+    ->exclude('Tests/Fixtures')
+    ->exclude('tests/Fixtures')
+    ->exclude('Resources/skeleton')
+    ->exclude('Resources/public/vendor')
+;
+
+return PhpCsFixer\Config::create()
+    ->setFinder($finder)
+    ->setRiskyAllowed(true)
+    ->setRules($rules)
+    ->setUsingCache(true)
+;

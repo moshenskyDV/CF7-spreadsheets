@@ -1,0 +1,14 @@
+{
+    "name": "CF7 Spreadsheets",
+    "type": "wordpress-plugin",
+    "scripts": {
+        "lint": "php vendor/bin/php-cs-fixer fix --diff --dry-run --ansi",
+        "lint-fix": "php vendor/bin/php-cs-fixer fix --diff --ansi"
+    },
+    "require": {
+        "google/apiclient": "^2.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.15"
+    }
+}

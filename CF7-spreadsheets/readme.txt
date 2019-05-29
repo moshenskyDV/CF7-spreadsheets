@@ -2,8 +2,8 @@
 Contributors: Moshenskyi Danylo
 Tags: contact form 7, google, spreadsheets, table, data, merge, save mail
 Requires at least: 4.7
-Tested up to: 5.0.4
-Stable tag: 2.1.2
+Tested up to: 5.2.1
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,18 +16,20 @@ Wordpress plugin that merge Contact form 7 functional with google spreadsheets (
 How to use:
 
 Video instruction: [https://www.youtube.com/watch?v=ZgZRBByY4fc](https://www.youtube.com/watch?v=ZgZRBByY4fc)
-
 Video instruction (OLD versions): [https://www.youtube.com/watch?v=5ICWr5MMo7E](https://www.youtube.com/watch?v=5ICWr5MMo7E)
 
 1. Prepare API
     * Go to the [Console Developers API](https://console.developers.google.com/)
-    * Enable Sheets API (in `library` tab)
-    * Create new service account
+    * Create new project (or choose existing one)
+    * Click "enable API and services", or click on "library" tab
+    * Find in list "Google sheets API" and click "enable"
     * Go to `Credentials` tab and click `create credentials`. In dropdown list choose `Service account key`. In next window select you service account, and `Key type` to `JSON`.
-    * Save the json document
+    * Save the JSON document
+    * Upload JSON document on plugin page (second tab).
 2. Create a table
     * Go to the [Google Spreadsheets](https://docs.google.com/spreadsheets/) and create new table (or open exists table)
     * Copy table URL and ID. For example: `//docs.google.com/spreadsheets/d/1yhzO1Q6ikYysfg8LCHqegPM/edit#gid=0` in this table URL is: `1yhzO1Q6ikYysfg8LCHqegPM`, and ID is: `0`(parameter `gid`).
+    * If you have private spreadsheet - you should grant edit rights to your service account (that we create earlier) directly in spreadsheet. You could find service account email in your website admin panel after uploading JSON file.
 3. Paste the spreadsheet URL and ID in plugin options page, upload JSON file, and choose other options.
 4. Create usual form in `Contact form 7` and use it.
 
@@ -40,7 +42,7 @@ Video instruction (OLD versions): [https://www.youtube.com/watch?v=5ICWr5MMo7E](
 
 = Infinite wheel on mail send =
 
-Probably, you not enable “Sheets API” on Google developers console. [Follow this link](https://console.developers.google.com/apis/api/sheets.googleapis.com/), and click “Enable”.
+Probably, you not enable “Sheets API” on Google developers console. [Follow this link](https://console.developers.google.com/apis/api/sheets.googleapis.com/), and click “Enable”. Or you didn't grant writable access to your service account.
 
 = Mail successfully send, but I don't see result on google table... =
 
@@ -56,6 +58,14 @@ Open table in browser, this parameters will in address string of your browser.
 2. Output page
 
 == Changelog ==
+
+= 2.2.0 =
+
+* Added composer config with package list
+* Updated dependencies
+* Added travis.ci to project
+* Added linter (php-cs-fixer) too project files
+* Fixed hidden field
 
 = 2.1.2 =
 

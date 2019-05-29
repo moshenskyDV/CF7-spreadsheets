@@ -1,8 +1,13 @@
 # CF7 Spreadsheets
 
 Wordpress plugin that merge Contact form 7 functional with google spreadsheets (also works with private spreadsheet).
+ 
+ [![WordPress plugin](https://img.shields.io/wordpress/plugin/dt/cf7-spreadsheets.svg)](https://wordpress.org/plugins/cf7-spreadsheets/advanced) 
+[![WordPress plugin](https://img.shields.io/wordpress/plugin/installs/cf7-spreadsheets.svg)](https://wordpress.org/plugins/cf7-spreadsheets/advanced)
+ [![Bitcoin wallet statistic](https://img.shields.io/badge/dynamic/json.svg?label=donations&url=https%3A%2F%2Fblockexplorer.com%2Fapi%2Faddr%2F126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL&query=%24.totalReceived&colorB=orange&suffix=%20BTC)](https://www.blockchain.com/btc/address/126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL)
 
-[![WordPress plugin](https://img.shields.io/wordpress/plugin/dt/cf7-spreadsheets.svg)](https://wordpress.org/plugins/cf7-spreadsheets/advanced) [![WordPress plugin](https://img.shields.io/wordpress/plugin/v/cf7-spreadsheets.svg?label=version)](https://wordpress.org/plugins/cf7-spreadsheets/#developers) [![Bitcoin wallet statistic](https://img.shields.io/badge/dynamic/json.svg?label=donations&url=https%3A%2F%2Fblockexplorer.com%2Fapi%2Faddr%2F126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL&query=%24.totalReceived&colorB=orange&suffix=%20BTC)](https://www.blockchain.com/btc/address/126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL)
+![Travis (.org)](https://img.shields.io/travis/moshenskyDV/CF7-spreadsheets.svg?style=popout)
+[![WordPress plugin](https://img.shields.io/wordpress/plugin/v/cf7-spreadsheets.svg?label=version)](https://wordpress.org/plugins/cf7-spreadsheets/#developers)
 
 Donation address (BTC): `126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL`
 
