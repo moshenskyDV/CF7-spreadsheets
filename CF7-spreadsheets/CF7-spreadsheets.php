@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 2.1.2
+Version: 2.2.2
 Author: Moshenskyi Danylo
 Author URI: https://github.com/moshenskyDV/
 Text Domain: CF7-spreadsheets
@@ -131,9 +131,31 @@ class CF7spreadsheets
         return get_post($id);
     }
 
+    /**
+     * Regex similar to contact-form-7/includes/form-tags-manager.php:262.
+     *
+     * @param $meta
+     *
+     * @return bool|mixed
+     */
     public function get_fields($meta)
     {
-        $regexp = '/\[.*\]/';
+        $allowed_tags_string = implode(
+            '|',
+            array_merge(
+                $this->allowed_tags,
+                array_map(function ($tag) { return $tag.'\*'; }, $this->allowed_tags),
+                $this->predefined_mail,
+                $this->predefined_post,
+                $this->predefined_site,
+                $this->predefined_user,
+                array_keys($this->obsolete_predefined_tags)
+            )
+        );
+        $regexp = '/(\[?)'
+            .'\[('.$allowed_tags_string.')(?:[\r\n\t ](.*?))?(?:[\r\n\t ](\/))?\]'
+            .'(?:([^[]*?)\[\/\2\])?'
+            .'(\]?)/s';
         $arr = [];
         if (false == preg_match_all($regexp, $meta, $arr)) {
             return false;
@@ -203,7 +225,7 @@ class CF7spreadsheets
                 $params_types = json_decode(get_post_meta($cf7->id(), 'CF7spreadsheets_output_types', true));
                 $values = [];
                 foreach ($params_names as $i => $param) {
-                    $d = $this->replace_tags($this->exec_shortcodes($param));
+                    $d = $this->replace_tags($this->exec_shortcodes($param), $cf7->scan_form_tags());
                     $cellData = new Google_Service_Sheets_CellData();
                     $value = new Google_Service_Sheets_ExtendedValue();
                     switch ($params_types[$i]) {
@@ -656,8 +678,12 @@ class CF7spreadsheets
         wp_die();
     }
 
-    private function replace_tags($string)
+    private function replace_tags($string, $request_form_tags)
     {
+        $assoc_request_form_tags = [];
+        foreach ($request_form_tags as $tag) {
+            $assoc_request_form_tags[$tag->name] = $tag;
+        }
         $regexp = '/\[.*\]/U';
         preg_match_all($regexp, $string, $arr);
         $replace_from = [];
@@ -677,7 +703,12 @@ class CF7spreadsheets
                         /*multiselect or checkboxes*/
                         $replace_to[] = implode(', ', $_POST[$clear_tag]);
                     } else {
-                        $replace_to[] = $_POST[$clear_tag];
+                        if (!empty($assoc_request_form_tags[$clear_tag]->pipes->collect_befores())) {
+                            $index = array_search($_POST[$clear_tag], $assoc_request_form_tags[$clear_tag]->pipes->collect_befores());
+                            $replace_to[] = $assoc_request_form_tags[$clear_tag]->pipes->collect_afters()[$index];
+                        } else {
+                            $replace_to[] = $_POST[$clear_tag];
+                        }
                     }
                 } elseif ($defined = wpcf7_special_mail_tag(false, $clear_tag, false)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';

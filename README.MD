@@ -13,7 +13,7 @@ Donation address (BTC): `126PYVmUc6X4BSqFckkwicJ8dJtCC9fCyL`
 
 ### Installation
 
-1. Upload plugin folder `CF7 -sreadsheets` to `wp-content/plugins` directory
+1. Upload plugin folder `CF7-sreadsheets` to `wp-content/plugins` directory
 2. Open wordpress admin tool and activate the plugin at `plugins` menu
 
 ### How to
