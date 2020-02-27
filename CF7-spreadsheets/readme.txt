@@ -2,8 +2,8 @@
 Contributors: Moshenskyi Danylo
 Tags: contact form 7, google, spreadsheets, table, data, merge, save mail
 Requires at least: 4.7
-Tested up to: 5.2.1
-Stable tag: 2.2.1
+Tested up to: 5.3.2
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,10 @@ Open table in browser, this parameters will in address string of your browser.
 2. Output page
 
 == Changelog ==
+
+= 2.2.3 =
+
+* Temporary rollback pipes feature, because it affects placeholders
 
 = 2.2.2 =
 
