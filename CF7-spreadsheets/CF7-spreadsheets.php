@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 2.2.3
+Version: 2.2.4
 Author: Moshenskyi Danylo
 Author URI: https://github.com/moshenskyDV/
 Text Domain: CF7-spreadsheets
@@ -11,7 +11,7 @@ Domain Path: /languages/
 License: MIT
 */
 
-/*  Copyright 2016  Moshenskyi Danylo  (email: moshensky.c1371@yandex.ru)
+/*  Copyright 2016  Moshenskyi Danylo  (email: moshenskyi.danylo@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -200,9 +200,11 @@ class CF7spreadsheets
 
     public function main($cf7)
     {
-        if ('on' == get_post_meta($cf7->id(), 'CF7spreadsheets_option_enabled', true)) {
+        if ('on' == get_post_meta($cf7->id, 'CF7spreadsheets_option_enabled', true)) {
             require 'vendor/autoload.php';
 
+            $submission = WPCF7_Submission::get_instance();
+            $posted_data = $submission->get_posted_data();
             $this->client = new Google_Client();
 
             try {
@@ -219,13 +221,13 @@ class CF7spreadsheets
 
             try {
                 // Set the sheet ID
-                $fileId = esc_html(get_post_meta($cf7->id(), 'CF7spreadsheets_option_url', true)); // Copy & paste from a spreadsheet URL
+                $fileId = esc_html(get_post_meta($cf7->id, 'CF7spreadsheets_option_url', true)); // Copy & paste from a spreadsheet URL
                 // Build the CellData array
-                $params_names = json_decode(get_post_meta($cf7->id(), 'CF7spreadsheets_output_tags', true));
-                $params_types = json_decode(get_post_meta($cf7->id(), 'CF7spreadsheets_output_types', true));
+                $params_names = json_decode(get_post_meta($cf7->id, 'CF7spreadsheets_output_tags', true));
+                $params_types = json_decode(get_post_meta($cf7->id, 'CF7spreadsheets_output_types', true));
                 $values = [];
                 foreach ($params_names as $i => $param) {
-                    $d = $this->replace_tags($this->exec_shortcodes($param), $cf7->scan_form_tags());
+                    $d = $this->replace_tags($this->exec_shortcodes($param), $posted_data);
                     $cellData = new Google_Service_Sheets_CellData();
                     $value = new Google_Service_Sheets_ExtendedValue();
                     switch ($params_types[$i]) {
@@ -251,7 +253,7 @@ class CF7spreadsheets
                 $rowData->setValues($values);
                 // Prepare the request
                 $append_request = new Google_Service_Sheets_AppendCellsRequest();
-                $append_request->setSheetId(esc_html(get_post_meta($cf7->id(), 'CF7spreadsheets_option_id', true))); //<-----SHEET ID
+                $append_request->setSheetId(esc_html(get_post_meta($cf7->id, 'CF7spreadsheets_option_id', true))); //<-----SHEET ID
                 $append_request->setRows($rowData);
                 $append_request->setFields('userEnteredValue');
                 // Set the request
@@ -281,7 +283,7 @@ class CF7spreadsheets
             }
 
             /*after google send option skip email needed*/
-            if ('on' != get_post_meta($cf7->id(), 'CF7spreadsheets_option_mail', true)) {
+            if ('on' != get_post_meta($cf7->id, 'CF7spreadsheets_option_mail', true)) {
                 $cf7->skip_mail = true;
             }
         }
@@ -678,12 +680,8 @@ class CF7spreadsheets
         wp_die();
     }
 
-    private function replace_tags($string, $request_form_tags)
+    private function replace_tags($string, $request_data)
     {
-        $assoc_request_form_tags = [];
-        foreach ($request_form_tags as $tag) {
-            $assoc_request_form_tags[$tag->name] = $tag;
-        }
         $regexp = '/\[.*\]/U';
         preg_match_all($regexp, $string, $arr);
         $replace_from = [];
@@ -696,20 +694,14 @@ class CF7spreadsheets
                     $clear_tag = $this->obsolete_predefined_tags[$clear_tag];
                 }
 
-                if (!empty($_POST[$clear_tag]) || '0' === $_POST[$clear_tag]) {
+                if (!empty($request_data[$clear_tag]) || '0' === $request_data[$clear_tag]) {
                     /*user tags*/
                     $replace_from[] = '/'.quotemeta($tag).'/';
-                    if (is_array($_POST[$clear_tag])) {
+                    if (is_array($request_data[$clear_tag])) {
                         /*multiselect or checkboxes*/
-                        $replace_to[] = implode(', ', $_POST[$clear_tag]);
+                        $replace_to[] = implode(', ', $request_data[$clear_tag]);
                     } else {
-                        // TODO: pipes affects placeholders
-//                        if (!empty($assoc_request_form_tags[$clear_tag]->pipes->collect_befores())) {
-//                            $index = array_search($_POST[$clear_tag], $assoc_request_form_tags[$clear_tag]->pipes->collect_befores());
-//                            $replace_to[] = $assoc_request_form_tags[$clear_tag]->pipes->collect_afters()[$index];
-//                        } else {
-                            $replace_to[] = $_POST[$clear_tag];
-//                        }
+                        $replace_to[] = $request_data[$clear_tag];
                     }
                 } elseif ($defined = wpcf7_special_mail_tag(false, $clear_tag, false)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
