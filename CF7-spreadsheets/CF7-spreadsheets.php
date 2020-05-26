@@ -200,7 +200,7 @@ class CF7spreadsheets
 
     public function main($cf7)
     {
-        if ('on' == get_post_meta($cf7->id, 'CF7spreadsheets_option_enabled', true)) {
+        if ('on' == get_post_meta($cf7->id(), 'CF7spreadsheets_option_enabled', true)) {
             require 'vendor/autoload.php';
 
             $submission = WPCF7_Submission::get_instance();
@@ -221,10 +221,10 @@ class CF7spreadsheets
 
             try {
                 // Set the sheet ID
-                $fileId = esc_html(get_post_meta($cf7->id, 'CF7spreadsheets_option_url', true)); // Copy & paste from a spreadsheet URL
+                $fileId = esc_html(get_post_meta($cf7->id(), 'CF7spreadsheets_option_url', true)); // Copy & paste from a spreadsheet URL
                 // Build the CellData array
-                $params_names = json_decode(get_post_meta($cf7->id, 'CF7spreadsheets_output_tags', true));
-                $params_types = json_decode(get_post_meta($cf7->id, 'CF7spreadsheets_output_types', true));
+                $params_names = json_decode(get_post_meta($cf7->id(), 'CF7spreadsheets_output_tags', true));
+                $params_types = json_decode(get_post_meta($cf7->id(), 'CF7spreadsheets_output_types', true));
                 $values = [];
                 foreach ($params_names as $i => $param) {
                     $d = $this->replace_tags($this->exec_shortcodes($param), $posted_data);
@@ -253,7 +253,7 @@ class CF7spreadsheets
                 $rowData->setValues($values);
                 // Prepare the request
                 $append_request = new Google_Service_Sheets_AppendCellsRequest();
-                $append_request->setSheetId(esc_html(get_post_meta($cf7->id, 'CF7spreadsheets_option_id', true))); //<-----SHEET ID
+                $append_request->setSheetId(esc_html(get_post_meta($cf7->id(), 'CF7spreadsheets_option_id', true))); //<-----SHEET ID
                 $append_request->setRows($rowData);
                 $append_request->setFields('userEnteredValue');
                 // Set the request
@@ -283,7 +283,7 @@ class CF7spreadsheets
             }
 
             /*after google send option skip email needed*/
-            if ('on' != get_post_meta($cf7->id, 'CF7spreadsheets_option_mail', true)) {
+            if ('on' != get_post_meta($cf7->id(), 'CF7spreadsheets_option_mail', true)) {
                 $cf7->skip_mail = true;
             }
         }
