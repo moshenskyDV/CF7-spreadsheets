@@ -81,14 +81,14 @@ class CF7spreadsheets
         $this->plugin_url = plugins_url('', $file);
 
         register_activation_hook($this->plugin_name, [&$this, 'activate']);
-        register_deactivation_hook($this->plugin_name, [&$this, 'deactivate']);
+        register_uninstall_hook($this->plugin_name, [&$this, 'uninstall']);
     }
 
     public function activate()
     {
     }
 
-    public function deactivate()
+    public function uninstall()
     {
         /*remove all plugin data*/
         $forms = get_posts([
