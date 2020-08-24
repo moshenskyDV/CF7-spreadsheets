@@ -3,7 +3,7 @@
 Plugin Name: CF7 Spreadsheets
 Plugin URI: https://github.com/moshenskyDV/CF7-spreadsheets
 Description: Send Contact form 7 mail to Google spreadsheets
-Version: 2.2.4
+Version: 2.3.0
 Author: Moshenskyi Danylo
 Author URI: https://github.com/moshenskyDV/
 Text Domain: CF7-spreadsheets
@@ -80,10 +80,10 @@ class CF7spreadsheets
         $this->plugin_path = plugin_dir_path($file);
         $this->plugin_url = plugins_url('', $file);
 
-        register_uninstall_hook($this->plugin_name, [&$this, 'uninstall']);
+        register_uninstall_hook($this->plugin_name, 'uninstall');
     }
 
-    public function uninstall()
+    public static function uninstall()
     {
         /*remove all plugin data*/
         $forms = get_posts([
@@ -698,16 +698,16 @@ class CF7spreadsheets
                     } else {
                         $replace_to[] = $request_data[$clear_tag];
                     }
-                } elseif ($defined = wpcf7_special_mail_tag(false, $clear_tag, false)) {
+                } elseif ($defined = wpcf7_special_mail_tag(false, $clear_tag, false, null)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     $replace_to[] = $defined;
-                } elseif ($defined = wpcf7_post_related_smt(false, $clear_tag, false)) {
+                } elseif ($defined = wpcf7_post_related_smt(false, $clear_tag, false, null)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     $replace_to[] = $defined;
-                } elseif ($defined = wpcf7_site_related_smt(false, $clear_tag, false)) {
+                } elseif ($defined = wpcf7_site_related_smt(false, $clear_tag, false, null)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     $replace_to[] = $defined;
-                } elseif ($defined = wpcf7_user_related_smt(false, $clear_tag, false)) {
+                } elseif ($defined = wpcf7_user_related_smt(false, $clear_tag, false, null)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     $replace_to[] = $defined;
                 } else {
