@@ -22,7 +22,7 @@ Video instruction (OLD versions): [https://www.youtube.com/watch?v=5ICWr5MMo7E](
     * Go to the [Console Developers API](https://console.developers.google.com/)
     * Create new project (or choose existing one)
     * Click "enable API and services", or click on "library" tab
-    * Find in list "Google sheets API" and click "enable"
+    * Find in list "Google sheets API" and click "Enable"
     * Go to `Credentials` tab and click `create credentials`. In dropdown list choose `Service account key`. In next window select you service account, and `Key type` to `JSON`.
     * Save the JSON document
     * Upload JSON document on plugin page (second tab).
