@@ -689,6 +689,8 @@ class CF7spreadsheets
                     $clear_tag = $this->obsolete_predefined_tags[$clear_tag];
                 }
 
+                $dummy_mail_tag = new WPCF7_MailTag('', '', []);
+
                 if (!empty($request_data[$clear_tag]) || '0' === $request_data[$clear_tag]) {
                     /*user tags*/
                     $replace_from[] = '/'.quotemeta($tag).'/';
@@ -698,16 +700,16 @@ class CF7spreadsheets
                     } else {
                         $replace_to[] = $request_data[$clear_tag];
                     }
-                } elseif ($defined = wpcf7_special_mail_tag(false, $clear_tag, false, null)) {
+                } elseif ($defined = wpcf7_special_mail_tag(false, $clear_tag, false, $dummy_mail_tag)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     $replace_to[] = $defined;
-                } elseif ($defined = wpcf7_post_related_smt(false, $clear_tag, false, null)) {
+                } elseif ($defined = wpcf7_post_related_smt(false, $clear_tag, false, $dummy_mail_tag)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     $replace_to[] = $defined;
-                } elseif ($defined = wpcf7_site_related_smt(false, $clear_tag, false, null)) {
+                } elseif ($defined = wpcf7_site_related_smt(false, $clear_tag, false, $dummy_mail_tag)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     $replace_to[] = $defined;
-                } elseif ($defined = wpcf7_user_related_smt(false, $clear_tag, false, null)) {
+                } elseif ($defined = wpcf7_user_related_smt(false, $clear_tag, false, $dummy_mail_tag)) {
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     $replace_to[] = $defined;
                 } else {
