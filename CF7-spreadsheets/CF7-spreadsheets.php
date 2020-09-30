@@ -688,8 +688,8 @@ class CF7spreadsheets
                 if (in_array($clear_tag, array_keys($this->obsolete_predefined_tags))) {
                     $clear_tag = $this->obsolete_predefined_tags[$clear_tag];
                 }
-                
-                $dummy_mail_tag = new WPCF7_MailTag('', '', array());
+
+                $dummy_mail_tag = new WPCF7_MailTag('', '', []);
 
                 if (!empty($request_data[$clear_tag]) || '0' === $request_data[$clear_tag]) {
                     /*user tags*/
