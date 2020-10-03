@@ -691,7 +691,7 @@ class CF7spreadsheets
 
                 $dummy_mail_tag = new WPCF7_MailTag('', '', []);
 
-                if (!empty($request_data[$clear_tag]) || '0' === $request_data[$clear_tag]) {
+                if (array_key_exists($clear_tag, $request_data) && (!empty($request_data[$clear_tag]) || '0' === $request_data[$clear_tag])) {
                     /*user tags*/
                     $replace_from[] = '/'.quotemeta($tag).'/';
                     if (is_array($request_data[$clear_tag])) {
