@@ -6,9 +6,9 @@ jQuery(document).ready(function ($) {
         var reader = new FileReader();
         reader.fileNameSet = input.files[0].name;
         reader.onload = function (e, test) {
-            $.getJSON(e.target.result).complete(function (json){
+            $.getJSON(e.target.result, function (json){
                 $('.CF7spreadsheets_status').html('');
-                file_string = JSON.stringify(json.responseJSON);
+                file_string = JSON.stringify(json);
             });
         };
         reader.readAsDataURL(input.files[0]);

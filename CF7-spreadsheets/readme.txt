@@ -2,7 +2,7 @@
 Contributors: Moshenskyi Danylo
 Tags: contact form 7, google, spreadsheets, table, data, merge, save mail
 Requires at least: 4.7
-Tested up to: 5.5
+Tested up to: 5.6
 Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,10 @@ Open table in browser, this parameters will in address string of your browser.
 2. Output page
 
 == Changelog ==
+
+= 2.3.2 =
+
+* Fixed deprecated jQuery method on file upload.
 
 = 2.3.1 =
 
